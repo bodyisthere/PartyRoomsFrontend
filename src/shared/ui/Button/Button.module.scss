@@ -1,0 +1,37 @@
+.Button {
+  border-radius: 15px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-primary);
+}
+
+.default {
+  background: var(--color-calm);
+}
+
+.attention {
+  background: var(--color-attention);
+}
+
+.success {
+  background: var(--color-success-light);
+}
+
+.size_m {
+  font: var(--font-m);
+}
+
+.size_l {
+  font: var(--font-l);
+}
+
+.size_xl {
+  font: var(--font-xl);
+}
+
+.disabled {
+  opacity: 0.5;
+}

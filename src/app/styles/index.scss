@@ -1,0 +1,16 @@
+@import url('./reset.scss');
+@import url('./variables/global.scss');
+@import url('./themes/normal.scss');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+  background: var(--color-background);
+  font-family: 'Roboto', sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

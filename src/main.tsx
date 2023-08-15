@@ -3,6 +3,7 @@ import App from './app/App';
 import { BrowserRouter } from 'react-router-dom';
 import { StoreProvider } from '@/app/providers/StoreProvider';
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary/index.ts';
+import '@/app/styles/index.scss';
 
 const container = document.getElementById('root');
 

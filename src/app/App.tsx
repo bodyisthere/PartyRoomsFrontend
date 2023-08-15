@@ -1,4 +1,5 @@
 import { getUserInited } from '@/entities/User';
+import { InvitationPage } from '@/pages/InvitationPage';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Suspense, memo, useEffect } from 'react';
@@ -6,7 +7,8 @@ import { useSelector } from 'react-redux';
 
 const App = memo(() => {
   const dispatch = useAppDispatch();
-  const inited = useSelector(getUserInited);
+  // const inited = useSelector(getUserInited);
+  const inited = true;
 
   useEffect(() => {
     if (!inited) {
@@ -19,9 +21,10 @@ const App = memo(() => {
   }
 
   return (
-    <div>
+    <div id='app'>
       <Suspense fallback=''>
-        <MainLayout />
+        {/* <MainLayout /> */}
+        <InvitationPage />
       </Suspense>
     </div>
   );
