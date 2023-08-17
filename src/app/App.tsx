@@ -2,6 +2,7 @@ import { getUserInited } from '@/entities/User';
 import { InvitationPage } from '@/pages/InvitationPage';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Block } from '@/shared/ui/Block';
 import { Suspense, memo, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
@@ -23,8 +24,10 @@ const App = memo(() => {
   return (
     <div id='app'>
       <Suspense fallback=''>
+        <Block>
+          <InvitationPage />
+        </Block>
         {/* <MainLayout /> */}
-        <InvitationPage />
       </Suspense>
     </div>
   );

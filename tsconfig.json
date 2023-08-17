@@ -24,6 +24,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/entities/User/model/selectors/getUserInited/.ts"],
+  "include": ["./config/jest/*", "./src/**/*.ts", "./src/**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

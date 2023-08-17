@@ -2,17 +2,13 @@ import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import styles from './Text.module.scss';
 import { memo } from 'react';
 
-export type TextTheme = 'primary' | 'error';
+export type TextTheme = 'primary' | 'error' | 'placeholder' | 'black';
 
 export type TextAlign = 'right' | 'left' | 'center';
 
-export type TextBold = '100' | '300' | '400' | '500' | '700' | '900';
+export type TextBold = 'bold_100' | 'bold_300' | 'bold_400' | 'bold_500' | 'bold_700' | 'bold_900';
 
-export enum TextSize {
-  S = 'size_s',
-  M = 'size_m',
-  L = 'size_l',
-}
+export type TextSize = 'size_s' | 'size_m' | 'size_l' | 'size_xl';
 
 interface TextProps {
   className?: string;
@@ -27,17 +23,18 @@ interface TextProps {
 type HeaderTagType = 'h1' | 'h2' | 'h3';
 
 const sizeToHeaderTag: Record<TextSize, HeaderTagType> = {
-  [TextSize.S]: 'h3',
-  [TextSize.M]: 'h2',
-  [TextSize.L]: 'h1',
+  size_s: 'h3',
+  size_m: 'h2',
+  size_l: 'h1',
+  size_xl: 'h1',
 };
 
 export const Text = memo(
   ({
     align = 'left',
     className,
-    bold = '400',
-    size = TextSize.L,
+    bold = 'bold_400',
+    size = 'size_l',
     text,
     theme = 'primary',
     title,

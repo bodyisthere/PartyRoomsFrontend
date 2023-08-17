@@ -2,6 +2,7 @@ import { AnyAction, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/t
 import { CombinedState } from 'redux';
 import { UserSchema } from '@/entities/User';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { RoomSchema } from '@/entities/Room';
 
 export interface StateSchema {
   user: UserSchema;
@@ -9,6 +10,7 @@ export interface StateSchema {
 
   // async reducers
   // example?: ExampleSchema;
+  room?: RoomSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
