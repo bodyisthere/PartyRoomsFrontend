@@ -10,7 +10,9 @@ interface ProfilePageProps {
 
 const ProfilePage = ({ className }: ProfilePageProps) => {
   const { t } = useTranslation();
-  return <div className={classNames(styles.ProfilePage, {}, [className])} />;
+  return (
+    <div className={classNames(styles.ProfilePage, {}, [className])} data-testid='ProfilePage' />
+  );
 };
 
 export default ProfilePage;

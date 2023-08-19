@@ -5,6 +5,7 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "typeRoots": ["./node_modules/@types"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -24,6 +25,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["./config/jest/*", "./src/**/*.ts", "./src/**/*.tsx"],
+  "include": ["./config/jest/setupTests.js", "./src/**/*.ts", "./src/**/*.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

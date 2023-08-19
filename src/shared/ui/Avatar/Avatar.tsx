@@ -1,5 +1,5 @@
 import { CSSProperties, useMemo } from 'react';
-import { classNames, Mods } from '@/shared/lib/classNames/classNames';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { AppImage } from '../AppImage';
 import { Skeleton } from '../Skeleton';
 
@@ -20,7 +20,7 @@ export const Avatar = ({ alt, className, size, src, borderRadius }: AvatarProps)
       height: `${size}px`,
       borderRadius,
     }),
-    [size]
+    [size, borderRadius]
   );
 
   return (

@@ -3,6 +3,8 @@ import { CombinedState } from 'redux';
 import { UserSchema } from '@/entities/User';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { RoomSchema } from '@/entities/Room';
+import { RegistrationSchema } from '@/features/registration';
+import { LoginSchema } from '@/features/login/model/types/LoginSchema';
 
 export interface StateSchema {
   user: UserSchema;
@@ -11,6 +13,8 @@ export interface StateSchema {
   // async reducers
   // example?: ExampleSchema;
   room?: RoomSchema;
+  registration?: RegistrationSchema;
+  login?: LoginSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

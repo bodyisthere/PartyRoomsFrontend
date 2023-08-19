@@ -1,5 +1,10 @@
 module.exports = {
   roots: ['<rootDir>/src'],
+  globals: {
+    __IS_DEV__: true,
+    __API__: '',
+    __PROJECT__: 'jest',
+  },
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts', '!src/mocks/**'],
   coveragePathIgnorePatterns: [],
   setupFilesAfterEnv: ['./config/jest/setupTests.js'],
@@ -17,10 +22,11 @@ module.exports = {
   moduleNameMapper: {
     '^react-native$': 'react-native-web',
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
+    '\\.s?css$': 'identity-obj-proxy',
+    // '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   moduleFileExtensions: [
-    // Place tsx and ts to beginning as suggestion from Jest team
-    // https://jestjs.io/docs/configuration#modulefileextensions-arraystring
     'tsx',
     'ts',
     'web.js',
@@ -34,4 +40,16 @@ module.exports = {
   ],
   watchPlugins: ['jest-watch-typeahead/filename', 'jest-watch-typeahead/testname'],
   resetMocks: true,
+  reporters: [
+    'default',
+    [
+      'jest-html-reporters',
+      {
+        publicPath: '<rootDir>/reports/unit',
+        filename: 'report.html',
+        openReport: true,
+        inlineSource: true,
+      },
+    ],
+  ],
 };

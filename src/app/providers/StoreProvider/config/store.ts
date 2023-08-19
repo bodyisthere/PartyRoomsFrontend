@@ -19,7 +19,8 @@ export function createReduxStore(
 
   const store = configureStore({
     reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
-    devTools: import.meta.env.DEV,
+    // TODO devtools
+    devTools: true,
     preloadedState: initialState,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(rtkApi.middleware),
   });

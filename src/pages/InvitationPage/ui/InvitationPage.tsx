@@ -5,6 +5,8 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { roomReducer } from '@/entities/Room/model/slice/roomSlice';
+import { Block } from '@/shared/ui/Block';
+import { HStack } from '@/shared/ui/Stack';
 
 const reducers: ReducersList = {
   room: roomReducer,
@@ -13,7 +15,11 @@ const reducers: ReducersList = {
 const InvitationPage = () => {
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <ConnectRoom />
+      <HStack align='center' justify='center' style={{ height: '100vh' }}>
+        <Block>
+          <ConnectRoom />
+        </Block>
+      </HStack>
     </DynamicModuleLoader>
   );
 };

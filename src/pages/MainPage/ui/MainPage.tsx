@@ -10,7 +10,7 @@ interface MainPageProps {
 
 const MainPage = ({ className }: MainPageProps) => {
   const { t } = useTranslation();
-  return <div className={classNames(styles.MainPage, {}, [className])} />;
+  return <div className={classNames(styles.MainPage, {}, [className])} data-testid='MainPage' />;
 };
 
 export default MainPage;
