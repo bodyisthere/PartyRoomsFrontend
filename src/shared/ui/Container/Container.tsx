@@ -7,11 +7,16 @@ interface ContainerProps {
   maxWidth?: string;
   padding?: string;
   children?: ReactNode;
+  testId: string;
 }
 
-export const Container = ({ className, maxWidth, padding, children }: ContainerProps) => {
+export const Container = ({ className, maxWidth, padding, children, testId }: ContainerProps) => {
   return (
-    <div className={classNames('', {}, [className])} style={{ maxWidth, padding }}>
+    <div
+      className={classNames('', {}, [className])}
+      style={{ maxWidth, padding }}
+      data-testid={testId}
+    >
       {children}
     </div>
   );

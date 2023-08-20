@@ -29,7 +29,7 @@ const AuthorizationPage = ({ className }: AuthorizationPageProps) => {
   }, [authCondition]);
 
   return (
-    <Container padding='0px 10px' maxWidth='1440px'>
+    <Container padding='0px 10px' maxWidth='1440px' testId='AuthorizationPage'>
       <VStack align='start' justify='center' style={{ height: '100vh' }}>
         <Block
           className={classNames('', {}, [className])}

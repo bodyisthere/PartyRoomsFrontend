@@ -1,10 +1,4 @@
-export interface RegistrationSchema {
-  firstName: string;
-  lastName: string;
-  userName: string;
-  email: string;
-  phoneNumber: string;
-  dateOfBirth: string;
-  password: string;
-  confirmPassword: string;
-}
+import { registrationValidationSchema } from '../../lib/validation/registrationValidation';
+import { InferType } from 'yup';
+
+export type RegistrationSchema = InferType<typeof registrationValidationSchema>;

@@ -13,17 +13,14 @@ export const registrationSlice = createSlice({
     setLastName: (state, { payload }: PayloadAction<string>) => {
       state.lastName = payload;
     },
-    setUsername: (state, { payload }: PayloadAction<string>) => {
-      state.userName = payload;
-    },
     setEmail: (state, { payload }: PayloadAction<string>) => {
       state.email = payload;
     },
+    setUsername: (state, { payload }: PayloadAction<string>) => {
+      state.username = payload;
+    },
     setPhoneNumber: (state, { payload }: PayloadAction<string>) => {
       state.phoneNumber = payload;
-    },
-    setDateOfBirth: (state, { payload }: PayloadAction<string>) => {
-      state.dateOfBirth = payload;
     },
     setPassword: (state, { payload }: PayloadAction<string>) => {
       state.password = payload;
