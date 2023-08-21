@@ -5,6 +5,7 @@ import { Container } from '@/shared/ui/Container';
 import { ReactNode, useCallback, useState } from 'react';
 import { LoginForm } from '@/features/login';
 import { RegistrationForm } from '@/features/registration';
+import styles from './AuthorizationPage.module.scss';
 
 interface AuthorizationPageProps {
   className?: string;
@@ -29,18 +30,25 @@ const AuthorizationPage = ({ className }: AuthorizationPageProps) => {
   }, [authCondition]);
 
   return (
-    <Container padding='0px 10px' maxWidth='1440px' testId='AuthorizationPage'>
-      <VStack align='start' justify='center' style={{ height: '100vh' }}>
-        <Block
-          className={classNames('', {}, [className])}
-          width='40vw'
-          height='auto'
-          data-testid='AuthorizationPage'
+    <div className={styles.AuthorizationPage}>
+      <Container padding='0px 10px' maxWidth='1440px' maxHeight='100vh' testId='AuthorizationPage'>
+        <VStack
+          align='center'
+          justify='center'
+          style={{ height: '100vh' }}
+          className={styles.content}
         >
-          {matchCondition()}
-        </Block>
-      </VStack>
-    </Container>
+          <Block
+            className={classNames(styles.block, {}, [className])}
+            height='auto'
+            width='50vw'
+            data-testid='AuthorizationPage'
+          >
+            {matchCondition()}
+          </Block>
+        </VStack>
+      </Container>
+    </div>
   );
 };
 

@@ -3,6 +3,9 @@ import styles from './Input.module.scss';
 import { InputHTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
 import { HStack, VStack } from '../Stack';
 import { Text } from '../Text';
+import EyeClose from '../../assets/icons/EyeClose.svg';
+import EyeOpen from '../../assets/icons/EyeOpen.svg';
+import { Icon } from '../Icon';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -22,6 +25,8 @@ interface InputProps extends HTMLInputProps {
   readonly?: boolean;
   addonLeft?: ReactNode;
   addonRight?: ReactNode;
+  isError?: boolean;
+  isPassword?: boolean;
   size?: InputSize;
   theme?: InputTheme;
 }
@@ -37,12 +42,15 @@ export const Input = ({
   addonLeft,
   addonRight,
   label,
+  isPassword,
+  isError,
   theme = 'form-input',
   size = 'm',
   ...otherProps
 }: InputProps) => {
   const ref = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [isPasswordShow, setIsPasswordShow] = useState(false);
 
   useEffect(() => {
     if (autofocus) {
@@ -63,21 +71,30 @@ export const Input = ({
     setIsFocused(true);
   };
 
+  const togglePassword = () => {
+    setIsPasswordShow((prev) => !prev);
+  };
+
   const mods: Mods = {
     [styles.readonly]: readonly,
     [styles.focused]: isFocused,
     [styles[theme]]: true,
     [styles.withAddonLeft]: Boolean(addonLeft),
     [styles.withAddonRight]: Boolean(addonRight),
+    [styles.error]: isError,
   };
 
   const input = (
     <div className={classNames(styles.InputWrapper, mods, [className, styles[size]])}>
-      {addonLeft && <div className={styles.addonLeft}>{addonLeft}</div>}
+      {addonLeft && (
+        <HStack align='center' className={styles.addonLeft}>
+          {addonLeft}
+        </HStack>
+      )}
       <input
         ref={ref}
-        type={type}
-        value={value}
+        type={isPassword ? (isPasswordShow ? 'text' : 'password') : type}
+        value={value || ''}
         onChange={onChangeHandler}
         className={styles.input}
         onFocus={onFocus}
@@ -86,18 +103,18 @@ export const Input = ({
         placeholder={placeholder}
         {...otherProps}
       />
+      {}
+      {isPassword && (
+        <Icon clickable onClick={togglePassword} Svg={isPasswordShow ? EyeOpen : EyeClose} />
+      )}
       {addonRight && <div className={styles.addonRight}>{addonRight}</div>}
     </div>
   );
 
   if (label) {
     return (
-      <VStack
-        max
-        gap='4'
-        className={classNames(styles.InputWrapper, mods, [className, styles[size]])}
-      >
-        <Text text={label} bold='bold_900' size='size_l' />
+      <VStack gap='4' className={classNames(styles.InputWrapper, mods, [className, styles[size]])}>
+        <Text align='left' text={label} bold='bold_900' size='size_l' />
         {input}
       </VStack>
     );

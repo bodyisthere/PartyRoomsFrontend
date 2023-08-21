@@ -1,32 +1,38 @@
-import { RegistrationSchema } from '../types/RegistrationSchema';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { RegistrationSchema, RegistrationStep } from '../types/RegistrationSchema';
 
-const initialState: RegistrationSchema = {} as RegistrationSchema;
+const initialState: RegistrationSchema = {
+  body: {},
+  step: '1',
+} as RegistrationSchema;
 
 export const registrationSlice = createSlice({
   name: 'registration',
   initialState,
   reducers: {
     setFirstName: (state, { payload }: PayloadAction<string>) => {
-      state.firstName = payload;
+      state.body.firstName = payload;
     },
     setLastName: (state, { payload }: PayloadAction<string>) => {
-      state.lastName = payload;
+      state.body.lastName = payload;
     },
     setEmail: (state, { payload }: PayloadAction<string>) => {
-      state.email = payload;
+      state.body.email = payload;
     },
     setUsername: (state, { payload }: PayloadAction<string>) => {
-      state.username = payload;
+      state.body.username = payload;
     },
     setPhoneNumber: (state, { payload }: PayloadAction<string>) => {
-      state.phoneNumber = payload;
+      state.body.phoneNumber = payload;
     },
     setPassword: (state, { payload }: PayloadAction<string>) => {
-      state.password = payload;
+      state.body.password = payload;
     },
     setConfirmPassword: (state, { payload }: PayloadAction<string>) => {
-      state.confirmPassword = payload;
+      state.body.confirmPassword = payload;
+    },
+    setStep: (state, { payload }: PayloadAction<RegistrationStep>) => {
+      state.step = payload;
     },
   },
 });

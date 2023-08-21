@@ -1,31 +1,53 @@
-import { object, string } from 'yup';
-import { RegistrationSchema } from '../..';
+import { object, string, ValidationError, ref } from 'yup';
+import {
+  RegistrationSchemaFirstStep,
+  RegistrationSchemaSecondStep,
+} from '../../model/types/RegistrationSchema';
 
-export const registrationValidationSchema = object({
-  firstName: string().required(),
-  lastName: string().required(),
-  username: string().required(),
-  email: string().email().required(),
-  phoneNumber: string().required(),
-  password: string().length(5).required(),
-  confirmPassword: string().length(5).required(),
+// TODO localisation
+// setLocale({
+//   mixed: {
+//     default(params) {},
+//   },
+// });
+
+export const registrationValidationStepFirstYupSchema = object({
+  firstName: string().required('Это поле обязательно'),
+  lastName: string().required('Это поле обязательно'),
+  username: string().required('Это поле обязательно'),
 });
 
-type RegistrationValidation = (body: RegistrationSchema) => Promise<RegistrationSchema>;
+export const registrationValidationStepSecondYupSchema = object({
+  email: string().required('Это поле обязательно').email('Введите корректный email'),
+  phoneNumber: string().required('Это поле обязательно'),
+  password: string().required('Это поле обязательно').min(5, 'Минимальная длина пароля 5 символов'),
+  confirmPassword: string()
+    .min(5, 'Минимальная длина пароля 5 символов')
+    .oneOf([ref('password')], 'Пароли не сходятся'),
+});
 
-export const registrationValidation: RegistrationValidation = async (body) => {
-  const validationResult = await registrationValidationSchema
-    .validate(body, { abortEarly: false })
-    .catch((err) => err);
-
-  return validationResult;
+const registrationValidation = (
+  schema:
+    | typeof registrationValidationStepFirstYupSchema
+    | typeof registrationValidationStepSecondYupSchema,
+  body: RegistrationSchemaFirstStep | RegistrationSchemaSecondStep
+) => {
+  try {
+    schema.validateSync(body, { abortEarly: false });
+    return false;
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      const errorObject: Record<string, string> = {};
+      error.inner.forEach((e: ValidationError) => {
+        errorObject[e.path ? e.path : 'e'] = e.message;
+      });
+      return errorObject;
+    }
+  }
 };
 
-// const validateNestedSchema = async () => {
-//   const validationResult = await validationSchemaNested
-//     .validate(dataObjectNested, { abortEarly: false })
-//     .catch((err) => {
-//       return err;
-//     });
-//   console.log(validationResult.inner[0].path); // gives "basicDetails.emailId"
-// };
+export const registrationValidationStepFirst = (body: RegistrationSchemaFirstStep) =>
+  registrationValidation(registrationValidationStepFirstYupSchema, body);
+
+export const registrationValidationStepSecond = (body: RegistrationSchemaSecondStep) =>
+  registrationValidation(registrationValidationStepSecondYupSchema, body);

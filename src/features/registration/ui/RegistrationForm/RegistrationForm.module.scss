@@ -9,3 +9,30 @@
 .buttons {
   margin-top: 10px;
 }
+
+@media (width < 1024px) {
+  .text {
+    margin: 12px 0 18px;
+  }
+}
+
+@media (width < 768px) {
+  .buttons {
+    margin-top: 5px;
+    flex-direction: column;
+
+    button:first-child {
+      margin-bottom: 5px;
+    }
+  }
+
+  .text {
+    margin: 5px 0 10px;
+  }
+}
+
+@media (width < 425px) {
+  .text {
+    margin: 3px 0 5px;
+  }
+}

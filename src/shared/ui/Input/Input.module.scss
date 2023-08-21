@@ -1,5 +1,16 @@
 .InputWrapper {
   width: 100%;
+  display: flex;
+
+  .addonLeft {
+    color: var(--color-placeholder);
+    padding-right: 1px;
+  }
+
+  .addonRight {
+    color: var(--color-placeholder);
+    padding-left: 1px;
+  }
 
   .input {
     padding: 3px;
@@ -7,7 +18,16 @@
   }
 }
 
-.InputWrapper .form-input {
+.InputWrapper.form-input.error {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  border-bottom: 1px solid var(--color-attention);
+
+  input {
+    color: var(--color-attention);
+  }
+}
+
+.InputWrapper.form-input {
   border-bottom: 1px solid var(--color-placeholder);
 
   .input {
@@ -18,4 +38,27 @@
 
 .readonly {
   cursor: default;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-0.5px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(1px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-2px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(3px, 0, 0);
+  }
 }

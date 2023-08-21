@@ -1,0 +1,14 @@
+.buttons {
+  margin-top: 10px;
+}
+
+@media (width < 768px) {
+  .buttons {
+    margin-top: 5px;
+    flex-direction: column;
+
+    button:first-child {
+      margin-bottom: 5px;
+    }
+  }
+}

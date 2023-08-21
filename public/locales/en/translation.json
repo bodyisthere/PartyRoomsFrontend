@@ -1,3 +1,19 @@
 {
-  "Привет": "Hello"
+  "Привет": "Hello",
+  "Присоединиться": "Connect",
+  "и ещё": "and",
+  "пользователей": "users",
+  "Давайте знакомиться!": "Let's get acquainted!",
+  "Имя": "Name",
+  "Николай": "Nikolay",
+  "Фамилия": "Surname",
+  "Иванов": "Ivanov",
+  "Псевдоним": "Pseudonym",
+  "Почта": "Email",
+  "Номер телефона": "Phone number",
+  "Пароль": "Password",
+  "Повторите пароль": "Confirm password",
+  "Войти": "Sign in",
+  "Продолжить": "Continue",
+  "Назад": "Back"
 }
