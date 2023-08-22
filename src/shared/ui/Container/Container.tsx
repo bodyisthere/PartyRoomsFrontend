@@ -8,24 +8,12 @@ interface ContainerProps {
   maxHeight?: string;
   padding?: string;
   children?: ReactNode;
-  testId: string;
 }
 
-export const Container = ({
-  className,
-  maxWidth,
-  maxHeight,
-  padding,
-  children,
-  testId,
-}: ContainerProps) => {
+export function Container({ className, maxWidth, maxHeight, padding, children }: ContainerProps) {
   return (
-    <div
-      className={classNames('', {}, [className])}
-      style={{ maxWidth, padding, maxHeight }}
-      data-testid={testId}
-    >
+    <div className={classNames('', {}, [className])} style={{ maxWidth, padding, maxHeight }}>
       {children}
     </div>
   );
-};
+}

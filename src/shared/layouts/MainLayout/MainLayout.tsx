@@ -8,7 +8,7 @@ interface MainLayoutProps {
   className?: string;
 }
 
-export const MainLayout = ({ className }: MainLayoutProps) => {
+export function MainLayout({ className }: MainLayoutProps) {
   const { t } = useTranslation();
   return <div className={classNames(styles.MainLayout, {}, [className])} />;
-};
+}

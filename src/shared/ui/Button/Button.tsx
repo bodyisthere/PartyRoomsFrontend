@@ -1,6 +1,6 @@
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
-import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 export type ButtonTheme = 'default' | 'attention' | 'success';
 
@@ -14,14 +14,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-export const Button = ({
+export function Button({
   className,
   children,
   disabled,
   size = 'size_m',
   theme = 'default',
   ...otherProps
-}: ButtonProps) => {
+}: ButtonProps) {
   const mods: Mods = {
     [styles[theme]]: true,
     [styles[size]]: true,
@@ -37,4 +37,4 @@ export const Button = ({
       {children}
     </button>
   );
-};
+}

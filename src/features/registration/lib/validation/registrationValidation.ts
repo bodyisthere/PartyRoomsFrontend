@@ -1,8 +1,12 @@
-import { object, string, ValidationError, ref } from 'yup';
-import {
-  RegistrationSchemaFirstStep,
-  RegistrationSchemaSecondStep,
-} from '../../model/types/RegistrationSchema';
+import { object, string, ValidationError, ref, InferType } from 'yup';
+
+export type RegistrationSchemaFirstStep = InferType<
+  typeof registrationValidationStepFirstYupSchema
+>;
+
+export type RegistrationSchemaSecondStep = InferType<
+  typeof registrationValidationStepSecondYupSchema
+>;
 
 // TODO localisation
 // setLocale({
@@ -12,16 +16,23 @@ import {
 // });
 
 export const registrationValidationStepFirstYupSchema = object({
-  firstName: string().required('Это поле обязательно'),
-  lastName: string().required('Это поле обязательно'),
-  username: string().required('Это поле обязательно'),
+  firstName: string()
+    .matches(/^[aA-zZА-ЯЁа-яё\s]+$/, 'Имя может содержать только буквы')
+    .required('Имя обязательное поле'),
+  lastName: string()
+    .matches(/^[aA-zZА-ЯЁа-яё\s]+$/, 'Фамилия может содержать только буквы')
+    .required('Фамилия обязательное поле'),
+  username: string().required('Псевдоним обязательное поле'),
 });
 
 export const registrationValidationStepSecondYupSchema = object({
-  email: string().required('Это поле обязательно').email('Введите корректный email'),
-  phoneNumber: string().required('Это поле обязательно'),
-  password: string().required('Это поле обязательно').min(5, 'Минимальная длина пароля 5 символов'),
+  email: string().required('Почта обязательное поле').email('Введите корректный email'),
+  phoneNumber: string().required('Номер телефона обязательное поле'),
+  password: string()
+    .required('Пароль обязательное поле')
+    .min(5, 'Минимальная длина пароля 5 символов'),
   confirmPassword: string()
+    .required('Повторите пароль')
     .min(5, 'Минимальная длина пароля 5 символов')
     .oneOf([ref('password')], 'Пароли не сходятся'),
 });

@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next';
 
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import styles from './ConnectRoom.module.scss';
 import { useRoom } from '@/entities/Room/api/roomApi';
-import { useDispatch } from 'react-redux';
 import { roomActions } from '@/entities/Room/model/slice/roomSlice';
-import { useEffect, useState } from 'react';
 import { Skeleton } from '@/shared/ui/Skeleton';
 import { VStack, HStack } from '@/shared/ui/Stack';
 import { Button } from '@/shared/ui/Button';
@@ -18,7 +18,7 @@ interface ConnectRoomProps {
   className?: string;
 }
 
-export const ConnectRoom = ({ className }: ConnectRoomProps) => {
+export function ConnectRoom({ className }: ConnectRoomProps) {
   const { t } = useTranslation();
   const { data, isLoading } = useRoom();
   const [avatars, setAvatars] = useState<string[]>([]);
@@ -29,9 +29,8 @@ export const ConnectRoom = ({ className }: ConnectRoomProps) => {
       dispatch(roomActions.setRoom(data));
       if (data.images.length > 4) {
         return setAvatars(data?.images.slice(0, 4));
-      } else {
-        return setAvatars(data?.images);
       }
+      return setAvatars(data?.images);
     }
   }, [data, dispatch]);
 
@@ -75,4 +74,4 @@ export const ConnectRoom = ({ className }: ConnectRoomProps) => {
       </VStack>
     )
   );
-};
+}

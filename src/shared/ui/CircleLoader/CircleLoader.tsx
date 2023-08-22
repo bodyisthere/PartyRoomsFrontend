@@ -6,11 +6,10 @@ interface CircleLoaderProps {
   height?: string;
 }
 
-export const CircleLoader = ({ className, height = '16px', width = '16px' }: CircleLoaderProps) => (
-  <div
-    className={styles.loader}
-    style={{ width, height }}
-  >
-    <span style={{ width, height }} />
-  </div>
-);
+export function CircleLoader({ className, height = '16px', width = '16px' }: CircleLoaderProps) {
+  return (
+    <div className={styles.loader} style={{ width, height }}>
+      <span style={{ width, height }} />
+    </div>
+  );
+}

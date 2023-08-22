@@ -1,15 +1,15 @@
 import { useTranslation } from 'react-i18next';
 
+import { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styles from './RegistrationStep.module.scss';
 
-import { useCallback, useState } from 'react';
 import { registrationActions } from '../../model/slice/registrationSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Text } from '@/shared/ui/Text';
 import { HStack } from '@/shared/ui/Stack';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
-import { useSelector } from 'react-redux';
 import { getRegistrationUsername } from '../../model/selectors/getRegistrationUsername';
 import { getRegistrationLastName } from '../../model/selectors/getRegistrationLastName';
 import { getRegistrationFirstName } from '../../model/selectors/getRegistrationFirstName';
@@ -19,7 +19,7 @@ import { getRegistrationPassword } from '../../model/selectors/getRegistrationPa
 import { getRegistrationPhoneNumber } from '../../model/selectors/getRegistrationPhoneNumber';
 import { registrationValidationStepSecond } from '../../lib/validation/registrationValidation';
 
-export const RegistrationStepSecond = () => {
+export function RegistrationStepSecond() {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const [validationResult, setValidationResult] = useState<Record<string, string>>({});
@@ -73,43 +73,47 @@ export const RegistrationStepSecond = () => {
 
   const goBack = useCallback(() => dispatch(registrationActions.setStep('1')), [dispatch]);
 
+  const matchValidationResult = () => {
+    if (validationResult.email) return validationResult.email;
+    if (validationResult.phoneNumber) return validationResult.phoneNumber;
+    if (validationResult.password) return validationResult.password;
+    if (validationResult.confirmPassword) return validationResult.confirmPassword;
+  };
+
   return (
     <>
-      <Text text={validationResult['email']} theme='error' />
+      <Text text={matchValidationResult()} theme='error' />
       <Input
         label={t('Почта')}
         placeholder='nikolay@gmail.com'
         value={email}
         onChange={onChangeEmail}
-        isError={!!validationResult['email']}
+        isError={!!validationResult.email}
         type='email'
       />
-      <Text text={validationResult['phoneNumber']} theme='error' />
       <Input
         label={t('Номер телефона')}
         placeholder='+ 7 (999) 999 99 99'
         value={phoneNumber}
         onChange={onChangePhoneNumber}
-        isError={!!validationResult['phoneNumber']}
+        isError={!!validationResult.phoneNumber}
         type='tel'
       />
-      <Text text={validationResult['password']} theme='error' />
       <Input
         label={t('Пароль')}
         placeholder='************'
         isPassword
         value={password}
         onChange={onChangePassword}
-        isError={!!validationResult['password']}
+        isError={!!validationResult.password}
       />
-      <Text text={validationResult['confirmPassword']} theme='error' />
       <Input
         label={t('Повторите пароль')}
         placeholder='************'
         isPassword
         value={confirmPassword}
         onChange={onChangeConfirmPassword}
-        isError={!!validationResult['confirmPassword']}
+        isError={!!validationResult.confirmPassword}
       />
       <HStack justify='between' className={styles.buttons}>
         <Button onClick={goBack} theme='attention' size='size_xl'>
@@ -121,4 +125,4 @@ export const RegistrationStepSecond = () => {
       </HStack>
     </>
   );
-};
+}

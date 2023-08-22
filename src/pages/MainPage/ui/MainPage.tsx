@@ -8,9 +8,9 @@ interface MainPageProps {
   className?: string;
 }
 
-const MainPage = ({ className }: MainPageProps) => {
+function MainPage({ className }: MainPageProps) {
   const { t } = useTranslation();
   return <div className={classNames(styles.MainPage, {}, [className])} data-testid='MainPage' />;
-};
+}
 
 export default MainPage;

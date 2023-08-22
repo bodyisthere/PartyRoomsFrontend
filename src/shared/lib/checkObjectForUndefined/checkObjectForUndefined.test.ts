@@ -1,3 +1,4 @@
+import { describe, test, expect } from 'vitest';
 import { checkObjectForUndefined } from './checkObjectForUndefined';
 
 describe('checkObjectForUndefined', () => {

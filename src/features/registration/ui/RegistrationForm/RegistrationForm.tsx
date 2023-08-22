@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
 
+import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
 import { Text } from '@/shared/ui/Text';
@@ -13,7 +13,6 @@ import {
 import { RegistrationStepFirst } from '../RegistrationStep/RegistrationStepFirst';
 import { RegistrationStepSecond } from '../RegistrationStep/RegistrationStepSecond';
 import { getRegistrationStep } from '../../model/selectors/getRegistrationStep';
-import { useSelector } from 'react-redux';
 
 const initialReducers: ReducersList = {
   registration: registrationReducer,
@@ -23,7 +22,7 @@ interface RegistrationFormProps {
   className?: string;
 }
 
-export const RegistrationForm = ({ className }: RegistrationFormProps) => {
+export function RegistrationForm({ className }: RegistrationFormProps) {
   const { t } = useTranslation();
   const step = useSelector(getRegistrationStep);
 
@@ -51,4 +50,4 @@ export const RegistrationForm = ({ className }: RegistrationFormProps) => {
       </div>
     </DynamicModuleLoader>
   );
-};
+}

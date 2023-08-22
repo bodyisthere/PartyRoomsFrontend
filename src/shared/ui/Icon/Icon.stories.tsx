@@ -8,5 +8,4 @@ export default {
 
 const Template: StoryFn<typeof Icon> = (args) => <Icon {...args} />;
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};

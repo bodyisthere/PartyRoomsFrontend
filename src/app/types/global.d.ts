@@ -1,3 +1,8 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/naming-convention */
+/// <reference types="vite/client" />
+/// <reference path="./global.d.ts" />
+
 declare module '*.scss' {
   interface IClassNames {
     [className: string]: string;
@@ -9,6 +14,7 @@ declare module '*.scss' {
 declare module '*.png';
 declare module '*.jpg';
 declare module '*.jpeg';
+
 declare module '*.svg' {
   import React from 'react';
 

@@ -12,8 +12,14 @@ type StoreDecoratorFunction = (
   asyncReducers?: ReducersList
 ) => Decorator;
 
-export const StoreDecorator: StoreDecoratorFunction = (state, asyncReducers) => (Story) => (
-  <StoreProvider initialState={state} asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}>
-    <Story />
-  </StoreProvider>
-);
+export const StoreDecorator: StoreDecoratorFunction = (state, asyncReducers) =>
+  function (Story) {
+    return (
+      <StoreProvider
+        initialState={state}
+        asyncReducers={{ ...defaultAsyncReducers, ...asyncReducers }}
+      >
+        <Story />
+      </StoreProvider>
+    );
+  };

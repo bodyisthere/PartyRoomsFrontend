@@ -1,8 +1,0 @@
-{
-  "extends": ["stylelint-config-standard"],
-  "rules": {
-    "indentation": 2,
-    "font-family-name-quotes": null,
-    "selector-class-pattern": null
-  }
-}

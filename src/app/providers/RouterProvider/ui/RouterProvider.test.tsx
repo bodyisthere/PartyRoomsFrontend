@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import { describe, test, expect } from 'vitest';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import RouterProvider from './RouterProvider';
 import { getRouteAuthorization, getRouteMain, getRouteProfile } from '@/shared/const/router';

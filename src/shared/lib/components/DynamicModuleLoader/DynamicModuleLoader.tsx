@@ -13,7 +13,7 @@ interface DynamicModuleLoaderProps {
   children: ReactNode;
 }
 
-export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
+export function DynamicModuleLoader(props: DynamicModuleLoaderProps) {
   const { children, reducers, removeAfterUnmount = true } = props;
 
   const store = useStore() as ReduxStoreWithManager;
@@ -43,4 +43,4 @@ export const DynamicModuleLoader = (props: DynamicModuleLoaderProps) => {
   }, []);
 
   return <>{children}</>;
-};
+}

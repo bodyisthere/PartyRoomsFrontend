@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client';
-import App from './app/App';
 import { BrowserRouter } from 'react-router-dom';
+import App from './app/App';
 import { StoreProvider } from '@/app/providers/StoreProvider';
 import { ErrorBoundary } from '@/app/providers/ErrorBoundary/index.ts';
 import '@/app/styles/index.scss';

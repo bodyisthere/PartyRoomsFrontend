@@ -1,8 +1,8 @@
+import { ReactNode, useCallback, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Block } from '@/shared/ui/Block';
 import { VStack } from '@/shared/ui/Stack';
 import { Container } from '@/shared/ui/Container';
-import { ReactNode, useCallback, useState } from 'react';
 import { LoginForm } from '@/features/login';
 import { RegistrationForm } from '@/features/registration';
 import styles from './AuthorizationPage.module.scss';
@@ -13,7 +13,7 @@ interface AuthorizationPageProps {
 
 export type AuthorizationCondition = 'registration' | 'login';
 
-const AuthorizationPage = ({ className }: AuthorizationPageProps) => {
+function AuthorizationPage({ className }: AuthorizationPageProps) {
   const [authCondition, setAuthCondition] = useState<AuthorizationCondition>('registration');
 
   const matchCondition = useCallback(() => {
@@ -30,8 +30,8 @@ const AuthorizationPage = ({ className }: AuthorizationPageProps) => {
   }, [authCondition]);
 
   return (
-    <div className={styles.AuthorizationPage}>
-      <Container padding='0px 10px' maxWidth='1440px' maxHeight='100vh' testId='AuthorizationPage'>
+    <div className={styles.AuthorizationPage} data-testid='AuthorizationPage'>
+      <Container padding='0px 10px' maxWidth='1440px' maxHeight='100vh'>
         <VStack
           align='center'
           justify='center'
@@ -50,6 +50,6 @@ const AuthorizationPage = ({ className }: AuthorizationPageProps) => {
       </Container>
     </div>
   );
-};
+}
 
 export default AuthorizationPage;

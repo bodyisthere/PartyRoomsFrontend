@@ -12,7 +12,7 @@ const reducers: ReducersList = {
   room: roomReducer,
 };
 
-const InvitationPage = () => {
+function InvitationPage() {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <HStack align='center' justify='center' style={{ height: '100vh' }}>
@@ -22,6 +22,6 @@ const InvitationPage = () => {
       </HStack>
     </DynamicModuleLoader>
   );
-};
+}
 
 export default InvitationPage;

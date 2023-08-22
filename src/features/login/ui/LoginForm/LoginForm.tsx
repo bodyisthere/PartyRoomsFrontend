@@ -8,7 +8,7 @@ interface LoginFormProps {
   className?: string;
 }
 
-export const LoginForm = ({ className }: LoginFormProps) => {
+export function LoginForm({ className }: LoginFormProps) {
   const { t } = useTranslation();
   return <div className={classNames(styles.LoginForm, {}, [className])} />;
-};
+}

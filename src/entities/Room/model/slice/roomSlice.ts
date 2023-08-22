@@ -1,5 +1,5 @@
-import { RoomSchema } from '../types/RoomSchema';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { RoomSchema } from '../types/RoomSchema';
 
 const initialState: RoomSchema = {} as RoomSchema;
 

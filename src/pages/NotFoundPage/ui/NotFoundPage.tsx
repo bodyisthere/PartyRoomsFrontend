@@ -8,9 +8,9 @@ interface NotFoundPageProps {
   className?: string;
 }
 
-export const NotFoundPage = ({ className }: NotFoundPageProps) => {
+export function NotFoundPage({ className }: NotFoundPageProps) {
   const { t } = useTranslation();
   return (
     <div className={classNames(styles.NotFoundPage, {}, [className])} data-testid='NotFoundPage' />
   );
-};
+}

@@ -8,15 +8,21 @@ interface LanguageSwitcherProps {
   className?: string;
 }
 
-export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
-      const { i18n } = useTranslation();
+export function LanguageSwitcher({ className }: LanguageSwitcherProps) {
+  const { i18n } = useTranslation();
 
-      const toggle = async () => {
-        console.log('current: ', i18n.language);
-        i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
-      };
+  const toggle = async () => {
+    console.log('current: ', i18n.language);
+    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+  };
 
-      return (
-        <div className={className} style={{'background':'red','width':'50x','height':'50px'}} onClick={toggle}>{i18n.language}</div>
-      )
-};
+  return (
+    <div
+      className={className}
+      style={{ background: 'red', width: '50x', height: '50px' }}
+      onClick={toggle}
+    >
+      {i18n.language}
+    </div>
+  );
+}

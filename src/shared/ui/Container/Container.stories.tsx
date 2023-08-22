@@ -8,5 +8,4 @@ export default {
 
 const Template: StoryFn<typeof Container> = (args) => <Container {...args} />;
 export const Primary = Template.bind({});
-Primary.args = {
-};
+Primary.args = {};

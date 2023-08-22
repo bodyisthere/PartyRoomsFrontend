@@ -1,4 +1,5 @@
 import { InferType } from 'yup';
+
 import {
   registrationValidationStepFirstYupSchema,
   registrationValidationStepSecondYupSchema,

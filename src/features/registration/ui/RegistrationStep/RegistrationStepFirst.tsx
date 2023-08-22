@@ -1,21 +1,21 @@
 import { useTranslation } from 'react-i18next';
 
+import { useSelector } from 'react-redux';
+import { useCallback, useState } from 'react';
 import styles from './RegistrationStep.module.scss';
 
 import { Text } from '@/shared/ui/Text';
 import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { useSelector } from 'react-redux';
 import { registrationActions } from '../../model/slice/registrationSlice';
 import { getRegistrationUsername } from '../../model/selectors/getRegistrationUsername';
 import { getRegistrationLastName } from '../../model/selectors/getRegistrationLastName';
 import { getRegistrationFirstName } from '../../model/selectors/getRegistrationFirstName';
-import { useCallback, useState } from 'react';
 import { registrationValidationStepFirst } from '../../lib/validation/registrationValidation';
 import { HStack } from '@/shared/ui/Stack';
 
-export const RegistrationStepFirst = () => {
+export function RegistrationStepFirst() {
   const { t } = useTranslation();
   const [validationResult, setValidationResult] = useState<Record<string, string>>({});
   const dispatch = useAppDispatch();
@@ -50,39 +50,43 @@ export const RegistrationStepFirst = () => {
       lastName: lastName ?? '',
       username: username ?? '',
     };
-    const validationResult = registrationValidationStepFirst(body);
-    if (validationResult) {
-      return setValidationResult(validationResult);
+    const result = registrationValidationStepFirst(body);
+    if (result) {
+      return setValidationResult(result);
     }
     dispatch(registrationActions.setStep('2'));
   }, [firstName, lastName, username, dispatch]);
 
+  const matchValidationResult = () => {
+    if (validationResult.firstName) return validationResult.firstName;
+    if (validationResult.lastName) return validationResult.lastName;
+    if (validationResult.username) return validationResult.username;
+  };
+
   return (
     <>
-      <Text text={validationResult['firstName']} theme='error' />
+      <Text text={matchValidationResult()} bold='bold_700' theme='error' />
       <Input
         label={t('Имя')}
         placeholder={t('Николай')}
         value={firstName}
         onChange={onChangeFirstName}
-        isError={!!validationResult['firstName']}
+        isError={!!validationResult.firstName}
       />
-      <Text text={validationResult['lastName']} theme='error' />
       <Input
         label={t('Фамилия')}
         placeholder={t('Иванов')}
         value={lastName}
         onChange={onChangeLastName}
-        isError={!!validationResult['lastName']}
+        isError={!!validationResult.lastName}
       />
-      <Text text={validationResult['username']} theme='error' />
       <Input
         label={t('Псевдоним')}
         placeholder='developer'
         value={username}
         addonLeft='@'
         onChange={onChangeUsername}
-        isError={!!validationResult['username']}
+        isError={!!validationResult.username}
       />
       <HStack justify='between' className={styles.buttons}>
         <Button theme='attention' size='size_xl'>
@@ -94,4 +98,4 @@ export const RegistrationStepFirst = () => {
       </HStack>
     </>
   );
-};
+}

@@ -48,7 +48,7 @@ export interface FlexProps extends DivProps {
   maxHeight?: boolean;
 }
 
-export const Flex = (props: FlexProps) => {
+export function Flex(props: FlexProps) {
   const {
     className,
     children,
@@ -81,4 +81,4 @@ export const Flex = (props: FlexProps) => {
       {children}
     </div>
   );
-};
+}

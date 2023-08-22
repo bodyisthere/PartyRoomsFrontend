@@ -1,6 +1,6 @@
+import { InputHTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import styles from './Input.module.scss';
-import { InputHTMLAttributes, ReactNode, useEffect, useRef, useState } from 'react';
 import { HStack, VStack } from '../Stack';
 import { Text } from '../Text';
 import EyeClose from '../../assets/icons/EyeClose.svg';
@@ -31,7 +31,7 @@ interface InputProps extends HTMLInputProps {
   theme?: InputTheme;
 }
 
-export const Input = ({
+export function Input({
   className,
   value,
   onChange,
@@ -47,7 +47,7 @@ export const Input = ({
   theme = 'form-input',
   size = 'm',
   ...otherProps
-}: InputProps) => {
+}: InputProps) {
   const ref = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isPasswordShow, setIsPasswordShow] = useState(false);
@@ -121,4 +121,4 @@ export const Input = ({
   }
 
   return input;
-};
+}

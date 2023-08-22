@@ -24,6 +24,10 @@
 
   input {
     color: var(--color-attention);
+
+    &::placeholder {
+      color: var(--color-attention);
+    }
   }
 }
 

@@ -1,11 +1,11 @@
+import { Suspense, memo, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import { getUserInited } from '@/entities/User';
 import { MainLayout } from '@/shared/layouts/MainLayout';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Block } from '@/shared/ui/Block';
-import { Suspense, memo, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { RouterProvider } from './providers/RouterProvider';
-import { Route, Routes } from 'react-router-dom';
 import { InvitationPage } from '@/pages/InvitationPage';
 
 const App = memo(() => {
