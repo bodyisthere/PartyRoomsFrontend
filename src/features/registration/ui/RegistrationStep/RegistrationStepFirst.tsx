@@ -64,7 +64,7 @@ export function RegistrationStepFirst() {
   };
 
   return (
-    <>
+    <div data-testid='RegistrationStepFirst'>
       <Text text={matchValidationResult()} bold='bold_700' theme='error' />
       <Input
         label={t('Имя')}
@@ -72,6 +72,7 @@ export function RegistrationStepFirst() {
         value={firstName}
         onChange={onChangeFirstName}
         isError={!!validationResult.firstName}
+        data-testid='firstNameInput'
       />
       <Input
         label={t('Фамилия')}
@@ -79,6 +80,7 @@ export function RegistrationStepFirst() {
         value={lastName}
         onChange={onChangeLastName}
         isError={!!validationResult.lastName}
+        data-testid='lastNameInput'
       />
       <Input
         label={t('Псевдоним')}
@@ -87,15 +89,16 @@ export function RegistrationStepFirst() {
         addonLeft='@'
         onChange={onChangeUsername}
         isError={!!validationResult.username}
+        data-testid='usernameInput'
       />
       <HStack justify='between' className={styles.buttons}>
         <Button theme='attention' size='size_xl'>
           {t('Войти')}
         </Button>
-        <Button onClick={submitResult} size='size_xl'>
+        <Button onClick={submitResult} size='size_xl' data-testid='ContinueButton'>
           {t('Продолжить')}
         </Button>
       </HStack>
-    </>
+    </div>
   );
 }

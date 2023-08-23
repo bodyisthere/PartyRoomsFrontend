@@ -6,7 +6,7 @@ import i18nForTests from '@/shared/config/i18n/i18nForTests';
 import { StateSchema, StoreProvider } from '@/app/providers/StoreProvider';
 import '@/app/styles/index.scss';
 
-export interface componentRenderOptions {
+export interface ComponentRenderOptions {
   route?: string;
   initialState?: DeepPartial<StateSchema>;
   asyncReducers?: DeepPartial<ReducersMapObject<StateSchema>>;
@@ -14,7 +14,7 @@ export interface componentRenderOptions {
 
 interface TestProviderProps {
   children: ReactNode;
-  options?: componentRenderOptions;
+  options?: ComponentRenderOptions;
 }
 
 export function TestProvider(props: TestProviderProps) {

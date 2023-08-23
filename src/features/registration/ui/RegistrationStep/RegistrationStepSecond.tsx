@@ -65,9 +65,9 @@ export function RegistrationStepSecond() {
       password: password ?? '',
       confirmPassword: confirmPassword ?? '',
     };
-    const validationResult = registrationValidationStepSecond(body);
-    if (validationResult) {
-      setValidationResult(validationResult);
+    const result = registrationValidationStepSecond(body);
+    if (result) {
+      setValidationResult(result);
     }
   }, [confirmPassword, email, password, phoneNumber]);
 
@@ -81,7 +81,7 @@ export function RegistrationStepSecond() {
   };
 
   return (
-    <>
+    <div data-testid='RegistrationStepSecond'>
       <Text text={matchValidationResult()} theme='error' />
       <Input
         label={t('Почта')}
@@ -123,6 +123,6 @@ export function RegistrationStepSecond() {
           {t('Продолжить')}
         </Button>
       </HStack>
-    </>
+    </div>
   );
 }

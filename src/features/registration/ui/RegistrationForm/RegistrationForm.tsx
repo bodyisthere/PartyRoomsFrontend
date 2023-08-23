@@ -30,6 +30,8 @@ export function RegistrationForm({ className }: RegistrationFormProps) {
     switch (step) {
       case '1':
         return <RegistrationStepFirst />;
+      case '2':
+        return <RegistrationStepSecond />;
       default:
         return <RegistrationStepSecond />;
     }

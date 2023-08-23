@@ -4,7 +4,7 @@ import { componentRender } from '@/shared/lib/tests/componentRender/componentRen
 import RouterProvider from './RouterProvider';
 import { getRouteAuthorization, getRouteMain, getRouteProfile } from '@/shared/const/router';
 
-describe('app/router/AppRouter', () => {
+describe('app/router/RouterProvider', () => {
   test('should redirect no auth user to forbidden page', async () => {
     componentRender(<RouterProvider />, {
       route: getRouteMain(),

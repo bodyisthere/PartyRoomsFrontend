@@ -27,6 +27,7 @@ export const registrationValidationStepFirstYupSchema = object({
 
 export const registrationValidationStepSecondYupSchema = object({
   email: string().required('Почта обязательное поле').email('Введите корректный email'),
+  // TODO should add phone number validation and mask
   phoneNumber: string().required('Номер телефона обязательное поле'),
   password: string()
     .required('Пароль обязательное поле')

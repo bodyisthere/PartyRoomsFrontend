@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { render } from '@testing-library/react';
-import { componentRenderOptions, TestProvider } from './TestProvider';
+import { ComponentRenderOptions, TestProvider } from './TestProvider';
 
-export function componentRender(component: ReactNode, options: componentRenderOptions = {}) {
+export function componentRender(component: ReactNode, options: ComponentRenderOptions = {}) {
   return render(<TestProvider options={options}>{component}</TestProvider>);
 }
