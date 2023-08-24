@@ -26,4 +26,12 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
   },
+  overrides: [
+    {
+      files: ['**/src/**/**/**/slice/*.ts'],
+      rules: {
+        'no-param-reassign': 'off',
+      },
+    },
+  ],
 };
