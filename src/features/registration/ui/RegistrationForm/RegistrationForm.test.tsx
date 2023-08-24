@@ -1,13 +1,12 @@
 import { screen, fireEvent } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
-import userEvent from '@testing-library/user-event';
 import { componentRender } from '@/shared/lib/tests/componentRender/componentRender';
 import { RegistrationForm } from './RegistrationForm';
 import { registrationReducer } from '../../model/slice/registrationSlice';
 
 describe('features/registration/RegistrationForm', () => {
   test('should render first step with value 1', async () => {
-    componentRender(<RegistrationForm />, {
+    componentRender(<RegistrationForm changeCondition={() => {}} />, {
       asyncReducers: {
         registration: registrationReducer,
       },
@@ -24,7 +23,7 @@ describe('features/registration/RegistrationForm', () => {
   });
 
   test('should render second step with value 2', async () => {
-    componentRender(<RegistrationForm />, {
+    componentRender(<RegistrationForm changeCondition={() => {}} />, {
       asyncReducers: {
         registration: registrationReducer,
       },
@@ -41,7 +40,7 @@ describe('features/registration/RegistrationForm', () => {
   });
 
   test('should render second step with other value', async () => {
-    componentRender(<RegistrationForm />, {
+    componentRender(<RegistrationForm changeCondition={() => {}} />, {
       asyncReducers: {
         registration: registrationReducer,
       },
@@ -58,7 +57,7 @@ describe('features/registration/RegistrationForm', () => {
   });
 
   test('should validate first step and go on second', async () => {
-    componentRender(<RegistrationForm />, {
+    componentRender(<RegistrationForm changeCondition={() => {}} />, {
       asyncReducers: {
         registration: registrationReducer,
       },
@@ -92,7 +91,7 @@ describe('features/registration/RegistrationForm', () => {
   });
 
   test('should validate first step and display error', async () => {
-    componentRender(<RegistrationForm />, {
+    componentRender(<RegistrationForm changeCondition={() => {}} />, {
       asyncReducers: {
         registration: registrationReducer,
       },

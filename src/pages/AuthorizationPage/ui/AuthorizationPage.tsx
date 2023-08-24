@@ -6,6 +6,7 @@ import { Container } from '@/shared/ui/Container';
 import { LoginForm } from '@/features/login';
 import { RegistrationForm } from '@/features/registration';
 import styles from './AuthorizationPage.module.scss';
+import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
 
 interface AuthorizationPageProps {
   className?: string;
@@ -16,18 +17,21 @@ export type AuthorizationCondition = 'registration' | 'login';
 function AuthorizationPage({ className }: AuthorizationPageProps) {
   const [authCondition, setAuthCondition] = useState<AuthorizationCondition>('registration');
 
+  const setLogin = useCallback(() => setAuthCondition('login'), []);
+  const setRegistration = useCallback(() => setAuthCondition('registration'), []);
+
   const matchCondition = useCallback(() => {
     let element: ReactNode;
     switch (authCondition) {
       case 'login':
-        element = <LoginForm />;
+        element = <LoginForm changeCondition={setRegistration} />;
         break;
       default:
-        element = <RegistrationForm />;
+        element = <RegistrationForm changeCondition={setLogin} />;
         break;
     }
     return element;
-  }, [authCondition]);
+  }, [authCondition, setLogin, setRegistration]);
 
   return (
     <div className={styles.AuthorizationPage} data-testid='AuthorizationPage'>

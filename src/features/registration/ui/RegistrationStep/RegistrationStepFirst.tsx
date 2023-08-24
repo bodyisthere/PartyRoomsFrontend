@@ -2,9 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useSelector } from 'react-redux';
 import { useCallback, useState } from 'react';
-import styles from './RegistrationStep.module.scss';
 
-import { Text } from '@/shared/ui/Text';
 import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -13,9 +11,13 @@ import { getRegistrationUsername } from '../../model/selectors/getRegistrationUs
 import { getRegistrationLastName } from '../../model/selectors/getRegistrationLastName';
 import { getRegistrationFirstName } from '../../model/selectors/getRegistrationFirstName';
 import { registrationValidationStepFirst } from '../../lib/validation/registrationValidation';
-import { HStack } from '@/shared/ui/Stack';
+import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
 
-export function RegistrationStepFirst() {
+interface RegistrationStepFirstProps {
+  changeCondition: () => void;
+}
+
+export function RegistrationStepFirst({ changeCondition }: RegistrationStepFirstProps) {
   const { t } = useTranslation();
   const [validationResult, setValidationResult] = useState<Record<string, string>>({});
   const dispatch = useAppDispatch();
@@ -54,18 +56,18 @@ export function RegistrationStepFirst() {
     if (result) {
       return setValidationResult(result);
     }
-    dispatch(registrationActions.setStep('2'));
+    return dispatch(registrationActions.setStep('2'));
   }, [firstName, lastName, username, dispatch]);
 
   const matchValidationResult = () => {
     if (validationResult.firstName) return validationResult.firstName;
     if (validationResult.lastName) return validationResult.lastName;
     if (validationResult.username) return validationResult.username;
+    return '';
   };
 
-  return (
-    <div data-testid='RegistrationStepFirst'>
-      <Text text={matchValidationResult()} bold='bold_700' theme='error' />
+  const form = (
+    <>
       <Input
         label={t('Имя')}
         placeholder={t('Николай')}
@@ -91,14 +93,28 @@ export function RegistrationStepFirst() {
         isError={!!validationResult.username}
         data-testid='usernameInput'
       />
-      <HStack justify='between' className={styles.buttons}>
-        <Button theme='attention' size='size_xl'>
-          {t('Войти')}
-        </Button>
-        <Button onClick={submitResult} size='size_xl' data-testid='ContinueButton'>
-          {t('Продолжить')}
-        </Button>
-      </HStack>
+    </>
+  );
+
+  const buttons = (
+    <>
+      <Button theme='attention' size='size_xl' onClick={changeCondition}>
+        {t('Войти')}
+      </Button>
+      <Button onClick={submitResult} size='size_xl' data-testid='ContinueButton'>
+        {t('Продолжить')}
+      </Button>
+    </>
+  );
+
+  return (
+    <div data-testid='RegistrationStepFirst'>
+      <AuthorizationLayout
+        form={form}
+        buttons={buttons}
+        title={t('Давайте знакомиться!')}
+        titleError={matchValidationResult()}
+      />
     </div>
   );
 }

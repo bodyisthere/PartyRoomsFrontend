@@ -1,58 +1,58 @@
-name: Deploy & build app
-on:
-  push:
-    branches: [ master ]
-    paths-ignore:
-      - '.github/workflows/*'
-  pull_request:
-    branches: [ master ]
-    paths-ignore:
-      - '.github/workflows/*'
-env: 
-  apiUrl: ${{ secrets.API_URL }}
-  mode: ${{ secrets.MODE }}
-  port: ${{ secrets.PORT }}
-jobs:
-  build_test:
-    runs-on: ubuntu-latest
-    strategy: 
-      matrix:
-        node-version: [ 17.x ]
-    steps:
-      - name: Code import
-        uses: actions/checkout@v3
-      - name: Print env variables
-        run: 
-          echo "{{ env.apiUrl }}"
-          echo "{{ env.mode }}"
-          echo "{{ env.port }}"
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with: 
-          path: ~/.npm
-          key: node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        run: npm ci
-      - name: Build production version
-        run: npm run build:prod
-      - name: Upload prod version
-        uses: actions/upload-artifact@v3
-        with: 
-          path: build
-          name: build-files
-      # - name: Build storybook
-      #   run: npm run build:storybook
-      - name: Unit test
-        run: npm run test:unit
-      - name: Lint typescript
-        run: npm run lint:ts:watch
-      - name: Lint scss
-        run: npm run lint:scss:watch
-  deploy:
-    needs: build_test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get builded prod version
-        uses: actions/download-artifact@v3
-        with:
-          name: build-files
+# name: Deploy & build app
+# on:
+#   push:
+#     branches: [ master ]
+#     paths-ignore:
+#       - '.github/workflows/*'
+#   pull_request:
+#     branches: [ master ]
+#     paths-ignore:
+#       - '.github/workflows/*'
+# env: 
+#   apiUrl: ${{ secrets.API_URL }}
+#   mode: ${{ secrets.MODE }}
+#   port: ${{ secrets.PORT }}
+# jobs:
+#   build_test:
+#     runs-on: ubuntu-latest
+#     strategy: 
+#       matrix:
+#         node-version: [ 17.x ]
+#     steps:
+#       - name: Code import
+#         uses: actions/checkout@v3
+#       - name: Print env variables
+#         run: 
+#           echo "{{ env.apiUrl }}"
+#           echo "{{ env.mode }}"
+#           echo "{{ env.port }}"
+#       - name: Cache dependencies
+#         uses: actions/cache@v3
+#         with: 
+#           path: ~/.npm
+#           key: node-modules-${{ hashFiles('**/package-lock.json') }}
+#       - name: Install dependencies
+#         run: npm ci
+#       - name: Build production version
+#         run: npm run build:prod
+#       - name: Upload prod version
+#         uses: actions/upload-artifact@v3
+#         with: 
+#           path: build
+#           name: build-files
+#       # - name: Build storybook
+#       #   run: npm run build:storybook
+#       - name: Unit test
+#         run: npm run test:unit
+#       - name: Lint typescript
+#         run: npm run lint:ts:watch
+#       - name: Lint scss
+#         run: npm run lint:scss:watch
+#   deploy:
+#     needs: build_test
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Get builded prod version
+#         uses: actions/download-artifact@v3
+#         with:
+#           name: build-files

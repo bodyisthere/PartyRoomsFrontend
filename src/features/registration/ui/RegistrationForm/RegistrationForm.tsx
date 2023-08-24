@@ -1,10 +1,5 @@
-import { useTranslation } from 'react-i18next';
-
 import { useSelector } from 'react-redux';
-import { classNames } from '@/shared/lib/classNames/classNames';
 
-import { Text } from '@/shared/ui/Text';
-import styles from './RegistrationForm.module.scss';
 import { registrationReducer } from '../../model/slice/registrationSlice';
 import {
   DynamicModuleLoader,
@@ -19,17 +14,16 @@ const initialReducers: ReducersList = {
 };
 
 interface RegistrationFormProps {
-  className?: string;
+  changeCondition: () => void;
 }
 
-export function RegistrationForm({ className }: RegistrationFormProps) {
-  const { t } = useTranslation();
+export function RegistrationForm({ changeCondition }: RegistrationFormProps) {
   const step = useSelector(getRegistrationStep);
 
   const stepSwitch = () => {
     switch (step) {
       case '1':
-        return <RegistrationStepFirst />;
+        return <RegistrationStepFirst changeCondition={changeCondition} />;
       case '2':
         return <RegistrationStepSecond />;
       default:
@@ -39,17 +33,7 @@ export function RegistrationForm({ className }: RegistrationFormProps) {
 
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-      <div className={classNames(styles.RegistrationForm, {}, [className])}>
-        <Text
-          title={t('Давайте знакомиться!')}
-          size='size_xl'
-          bold='bold_900'
-          theme='black'
-          align='center'
-          className={styles.text}
-        />
-        {stepSwitch()}
-      </div>
+      <div style={{ width: '100%' }}>{stepSwitch()}</div>
     </DynamicModuleLoader>
   );
 }

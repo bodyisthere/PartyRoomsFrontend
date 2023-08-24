@@ -2,12 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import styles from './RegistrationStep.module.scss';
 
 import { registrationActions } from '../../model/slice/registrationSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Text } from '@/shared/ui/Text';
-import { HStack } from '@/shared/ui/Stack';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
 import { getRegistrationUsername } from '../../model/selectors/getRegistrationUsername';
@@ -18,6 +15,7 @@ import { getRegistrationEmail } from '../../model/selectors/getRegistrationEmail
 import { getRegistrationPassword } from '../../model/selectors/getRegistrationPassword';
 import { getRegistrationPhoneNumber } from '../../model/selectors/getRegistrationPhoneNumber';
 import { registrationValidationStepSecond } from '../../lib/validation/registrationValidation';
+import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
 
 export function RegistrationStepSecond() {
   const { t } = useTranslation();
@@ -78,11 +76,11 @@ export function RegistrationStepSecond() {
     if (validationResult.phoneNumber) return validationResult.phoneNumber;
     if (validationResult.password) return validationResult.password;
     if (validationResult.confirmPassword) return validationResult.confirmPassword;
+    return '';
   };
 
-  return (
-    <div data-testid='RegistrationStepSecond'>
-      <Text text={matchValidationResult()} theme='error' />
+  const form = (
+    <>
       <Input
         label={t('Почта')}
         placeholder='nikolay@gmail.com'
@@ -115,14 +113,28 @@ export function RegistrationStepSecond() {
         onChange={onChangeConfirmPassword}
         isError={!!validationResult.confirmPassword}
       />
-      <HStack justify='between' className={styles.buttons}>
-        <Button onClick={goBack} theme='attention' size='size_xl'>
-          {t('Назад')}
-        </Button>
-        <Button onClick={submitResult} size='size_xl'>
-          {t('Продолжить')}
-        </Button>
-      </HStack>
+    </>
+  );
+
+  const buttons = (
+    <>
+      <Button onClick={goBack} theme='attention' size='size_xl'>
+        {t('Назад')}
+      </Button>
+      <Button onClick={submitResult} size='size_xl'>
+        {t('Продолжить')}
+      </Button>
+    </>
+  );
+
+  return (
+    <div data-testid='RegistrationStepSecond'>
+      <AuthorizationLayout
+        buttons={buttons}
+        form={form}
+        title={t('Давайте знакомиться!')}
+        titleError={matchValidationResult()}
+      />
     </div>
   );
 }
