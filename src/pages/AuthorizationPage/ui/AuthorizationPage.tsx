@@ -36,14 +36,9 @@ function AuthorizationPage({ className }: AuthorizationPageProps) {
   return (
     <div className={styles.AuthorizationPage} data-testid='AuthorizationPage'>
       <Container padding='0px 10px' maxWidth='1440px' maxHeight='100vh'>
-        <VStack
-          align='center'
-          justify='center'
-          style={{ height: '100vh' }}
-          className={styles.content}
-        >
+        <VStack align='center' justify='center' style={{ height: '100vh' }}>
           <Block
-            className={classNames(styles.block, {}, [className])}
+            className={classNames('', {}, [className])}
             height='auto'
             width='50vw'
             data-testid='AuthorizationPage'

@@ -1,14 +1,12 @@
-import { useTranslation } from 'react-i18next';
+import { HStack } from '@/shared/ui/Stack';
+import { UserProfile } from '@/widgets/UserProfile';
 
-import { classNames } from '@/shared/lib/classNames/classNames';
-
-interface ProfilePageProps {
-  className?: string;
-}
-
-function ProfilePage({ className }: ProfilePageProps) {
-  const { t } = useTranslation();
-  return <div className={classNames('', {}, [className])} data-testid='ProfilePage' />;
+function ProfilePage() {
+  return (
+    <HStack data-testid='ProfilePage' align='center' justify='center'>
+      <UserProfile />
+    </HStack>
+  );
 }
 
 export default ProfilePage;

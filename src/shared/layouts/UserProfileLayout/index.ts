@@ -1,0 +1,1 @@
+export { UserProfileLayout } from './UserProfileLayout';

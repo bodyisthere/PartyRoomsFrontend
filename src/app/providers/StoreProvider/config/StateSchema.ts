@@ -4,7 +4,9 @@ import { UserSchema } from '@/entities/User';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { RoomSchema } from '@/entities/Room';
 import { RegistrationSchema } from '@/features/registration';
-import { LoginSchema } from '@/features/login/model/types/LoginSchema';
+import { LoginSchema } from '@/features/login';
+import { UserProfileSchema } from '@/widgets/UserProfile';
+import { EditUserProfileSchema } from '@/features/EditUserProfile';
 
 export interface StateSchema {
   user: UserSchema;
@@ -15,6 +17,8 @@ export interface StateSchema {
   room?: RoomSchema;
   registration?: RegistrationSchema;
   login?: LoginSchema;
+  userProfile?: UserProfileSchema;
+  editUserProfile?: EditUserProfileSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

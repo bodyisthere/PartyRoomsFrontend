@@ -1,7 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/naming-convention */
-/// <reference types="vite/client" />
-/// <reference path="./global.d.ts" />
 
 declare module '*.scss' {
   interface IClassNames {

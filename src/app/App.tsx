@@ -7,6 +7,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { Block } from '@/shared/ui/Block';
 import { RouterProvider } from './providers/RouterProvider';
 import { InvitationPage } from '@/pages/InvitationPage';
+import { ProfilePage } from '@/pages/ProfilePage';
 
 const App = memo(() => {
   const dispatch = useAppDispatch();
@@ -26,7 +27,8 @@ const App = memo(() => {
   return (
     <div id='app'>
       <Suspense fallback=''>
-        <RouterProvider />
+        {/* <RouterProvider /> */}
+        <ProfilePage />
       </Suspense>
     </div>
   );
