@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import styles from './UserProfileLayout.module.scss';
 import { Container } from '@/shared/ui/Container';
-import { VStack } from '@/shared/ui/Stack';
+import { HStack, VStack } from '@/shared/ui/Stack';
 import { Block } from '@/shared/ui/Block';
 
 interface UserProfileLayoutProps {

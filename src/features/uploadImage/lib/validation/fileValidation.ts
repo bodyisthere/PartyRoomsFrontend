@@ -1,24 +1,12 @@
-import { object, mixed } from 'yup';
+import { FileValidationError } from '../../model/types/FileValidationError';
 
-const MAX_FILE_SIZE = 102400;
+const validFileType = ['image/jpeg', 'image/png', 'image/jpg'];
 
-const validFileExtensions = ['jpg', 'png', 'jpeg'];
-
-function isValidFileType(fileName: string) {
-  const fileType = fileName.split('.').pop() || 'err';
-  return fileName && validFileExtensions.includes(fileType);
-}
-
-object().shape({
-  image: mixed()
-    .required('Required')
-    .test('is-valid-type', 'Not a valid image type', (value) =>
-      // @ts-ignore
-      isValidFileType(value && value.name.toLowerCase())
-    )
-    .test(
-      'is-valid-size',
-      'Max allowed size is 100KB',
-      (value) => value && value.size <= MAX_FILE_SIZE
-    ),
-});
+export const fileValidation = (files: FileList) => {
+  for (let i = 0; i < files.length; i += 1) {
+    if (!validFileType.includes(files[i].type)) {
+      return { images: FileValidationError.NO_CORRECT_FILE_EXTENSION };
+    }
+  }
+  return false;
+};
