@@ -40,6 +40,17 @@
   }
 }
 
+.InputWrapper.dark-pick {
+  .input {
+    background: var(--color-title);
+    font-size: var(--font-size-l);
+    color: var(--color-primary);
+    padding: 7px;
+    font-weight: 900;
+    border-radius: 15px;
+  }
+}
+
 .readonly {
   cursor: default;
 }

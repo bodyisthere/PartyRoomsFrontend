@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { useSelector } from 'react-redux';
+import { useCallback, useEffect } from 'react';
 import { getEditUserProfileAbout } from '../../model/selectors/getEditUserProfileAbout';
 import { Container } from '@/shared/ui/Container';
 import { VStack, HStack } from '@/shared/ui/Stack';
@@ -26,10 +27,18 @@ export function EditUserProfileAbout({ className }: EditUserProfileAboutProps) {
   const aboutFromProfile = useSelector(getUserAuthData);
   const dispatch = useAppDispatch();
 
-  // TODO
-  // const onChange = (e: any) => {
-  //   dispatch(editUserProfileActions.setAbout())
-  // };
+  useEffect(() => {
+    if (aboutFromProfile?.about) {
+      dispatch(editUserProfileActions.setAbout(aboutFromProfile.about));
+    }
+  }, [aboutFromProfile, dispatch]);
+
+  const onChangeAbout = useCallback(
+    (value: string) => {
+      dispatch(editUserProfileActions.setAbout(value));
+    },
+    [dispatch]
+  );
 
   return (
     <div className={styles.EditUserProfileAbout}>
@@ -39,7 +48,12 @@ export function EditUserProfileAbout({ className }: EditUserProfileAboutProps) {
       </HStack>
       <div className={styles.about}>
         <Text text='О себе' bold='bold_900' size='size_xl' />
-        <Textarea placeholder={t('Расскажите о себе')} />
+        <Textarea
+          maxHeight
+          value={about}
+          onChange={onChangeAbout}
+          placeholder={t('Расскажите о себе...')}
+        />
       </div>
     </div>
   );

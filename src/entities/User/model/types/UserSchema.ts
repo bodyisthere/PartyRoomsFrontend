@@ -3,6 +3,10 @@ export interface User {
   avatar: string;
   firstName: string;
   lastName: string;
+  about: string;
+  hobbies: string[];
+  want: string[];
+  dwant: string[];
 }
 
 export interface UserSchema {

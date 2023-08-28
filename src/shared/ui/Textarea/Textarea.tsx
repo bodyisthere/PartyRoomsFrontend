@@ -22,6 +22,7 @@ interface TextAreaProps extends HTMLTextAreaProps {
   isPassword?: boolean;
   size?: TextAreaSize;
   theme?: TextAreaTheme;
+  maxHeight?: boolean;
 }
 
 export function Textarea({
@@ -35,6 +36,7 @@ export function Textarea({
   isPassword,
   isError,
   theme = 'form-textarea',
+  maxHeight = false,
   size = 'm',
   ...otherProps
 }: TextAreaProps) {
@@ -63,8 +65,10 @@ export function Textarea({
   const mods: Mods = {
     [styles.readonly]: readonly,
     [styles.focused]: isFocused,
+    [styles.maxHeight]: maxHeight,
     [styles[theme]]: true,
     [styles.error]: isError,
+    [styles[size]]: true,
   };
 
   return (

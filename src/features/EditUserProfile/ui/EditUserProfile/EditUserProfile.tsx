@@ -1,30 +1,38 @@
-import { useTranslation } from 'react-i18next';
-
-import { useSelector } from 'react-redux';
-
-import styles from './EditUserProfile.module.scss';
-import { getEditUserProfileAbout } from '../../model/selectors/getEditUserProfileAbout';
-import { getEditUserProfileHobby } from '../../model/selectors/getEditUserProfileHobby';
-import { getEditUserProfileWant } from '../../model/selectors/getEditUserProfileWant';
-import { getEditUserProfileDWant } from '../../model/selectors/getEditUserProfileDWant';
 import { ChangeAvatar } from '@/features/changeAvatar';
 import { UserProfileLayout } from '@/shared/layouts/UserProfileLayout';
 import { EditUserProfileAbout } from '../EditUserProfileAbout/EditUserProfileAbout';
+import {
+  DynamicModuleLoader,
+  ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { editUserProfileReducer } from '../../model/slice/editUserProfileSlice';
+import { EditUserProfilePick } from '../EditUserProfilePick/EditUserProfilePick';
 
-interface EditUserProfileProps {
-  className?: string;
-}
+const initialReducers: ReducersList = {
+  editUserProfile: editUserProfileReducer,
+};
 
-export function EditUserProfile({ className }: EditUserProfileProps) {
-  const { t } = useTranslation();
-  const about = useSelector(getEditUserProfileAbout);
-  const hobby = useSelector(getEditUserProfileHobby);
-  const want = useSelector(getEditUserProfileWant);
-  const dwant = useSelector(getEditUserProfileDWant);
-
-  const avatarBlock = <ChangeAvatar borderRadius='15px' size={300} className={styles.avatar} />;
+export function EditUserProfile() {
+  const avatarBlock = <ChangeAvatar borderRadius='15px' size={300} />;
 
   const aboutBlock = <EditUserProfileAbout />;
 
-  return <UserProfileLayout avatar={avatarBlock} about={aboutBlock} />;
+  const hobby = <EditUserProfilePick />;
+
+  const want = <EditUserProfilePick />;
+
+  const dwant = <EditUserProfilePick />;
+
+  return (
+    <DynamicModuleLoader reducers={initialReducers}>
+      <UserProfileLayout
+        avatar={avatarBlock}
+        about={aboutBlock}
+        hobby={hobby}
+        want={want}
+        dwant={dwant}
+      />
+      ;
+    </DynamicModuleLoader>
+  );
 }

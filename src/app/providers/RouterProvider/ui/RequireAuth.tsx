@@ -11,7 +11,7 @@ export function RequireAuth({ children }: RequireAuthProps) {
   const auth = useSelector(getUserAuthData);
   const location = useLocation();
 
-  if (!auth) {
+  if (!auth?.id) {
     return <Navigate to={getRouteForbidden()} state={{ from: location }} replace />;
   }
 

@@ -11,6 +11,7 @@ interface ContainerProps {
   padding?: string;
   center?: boolean;
   children?: ReactNode;
+  testid?: string;
 }
 
 export function Container({
@@ -19,6 +20,7 @@ export function Container({
   maxHeight,
   padding,
   children,
+  testid,
   center = false,
 }: ContainerProps) {
   const mods: Mods = {
@@ -26,7 +28,11 @@ export function Container({
   };
 
   return (
-    <div className={classNames('', mods, [className])} style={{ maxWidth, padding, maxHeight }}>
+    <div
+      className={classNames('', mods, [className])}
+      style={{ maxWidth, padding, maxHeight }}
+      data-testid={testid}
+    >
       {children}
     </div>
   );

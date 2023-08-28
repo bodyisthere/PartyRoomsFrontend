@@ -9,6 +9,7 @@ const initialState: UserSchema = {
     firstName: 'Николай',
     lastName: 'Иванов',
     id: '3',
+    about: '321321321321',
   },
 };
 

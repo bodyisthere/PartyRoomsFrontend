@@ -1,0 +1,50 @@
+.EditUserProfilePick {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-primary);
+  height: 100%;
+  border-radius: 15px;
+  padding: 10px;
+
+  .limit {
+    margin-bottom: 5px;
+  }
+
+  .new {
+    & .limitError {
+    }
+
+    .input {
+      height: 100%;
+      margin-right: 10px;
+
+      input {
+        border-radius: 15px 0px 0px 15px !important;
+      }
+    }
+
+    .add {
+      font-size: 40px;
+      padding: 5px;
+      border-radius: 0px 15px 15px 0px;
+      border: 5px solid var(--color-title);
+      color: var(--color-success);
+      transition: 0s all;
+
+      &:hover {
+        border: 5px solid var(--color-success);
+      }
+    }
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  max-width: 500px;
+}
+
+.button {
+  font-weight: 900;
+}

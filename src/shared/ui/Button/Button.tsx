@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
 
-export type ButtonTheme = 'default' | 'attention' | 'success';
+export type ButtonTheme = 'clear' | 'default' | 'attention' | 'success';
 
 export type ButtonSize = 'size_m' | 'size_l' | 'size_xl';
 

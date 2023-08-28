@@ -12,7 +12,7 @@ type HTMLInputProps = Omit<
   'value' | 'onChange' | 'readOnly' | 'size'
 >;
 
-type InputTheme = 'form-input';
+type InputTheme = 'form-input' | 'dark-pick';
 
 type InputSize = 's' | 'm' | 'l';
 

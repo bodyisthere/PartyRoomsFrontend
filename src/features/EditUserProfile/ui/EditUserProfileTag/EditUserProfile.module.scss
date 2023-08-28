@@ -1,0 +1,14 @@
+.tag {
+  max-width: 500px;
+  overflow: hidden;
+  color: var(--color-primary);
+  background: var(--color-title);
+  width: auto;
+  padding: 3px 0px 3px 15px;
+  border-radius: 15px;
+  margin: 5px;
+}
+
+.important {
+  color: var(--color-attention);
+}

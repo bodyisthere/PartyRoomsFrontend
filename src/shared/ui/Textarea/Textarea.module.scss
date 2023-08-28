@@ -3,7 +3,7 @@
   display: flex;
 
   .textarea {
-    padding: 3px;
+    padding: 3px 0px;
     width: 100%;
   }
 }
@@ -30,6 +30,10 @@
 
 .readonly {
   cursor: default;
+}
+
+.maxHeight {
+  height: 100%;
 }
 
 @keyframes shake {

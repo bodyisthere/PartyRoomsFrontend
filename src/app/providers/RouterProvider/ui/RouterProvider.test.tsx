@@ -8,6 +8,12 @@ describe('app/router/RouterProvider', () => {
   test('should redirect no auth user to forbidden page', async () => {
     componentRender(<RouterProvider />, {
       route: getRouteMain(),
+      initialState: {
+        user: {
+          _inited: false,
+          authData: {},
+        },
+      },
     });
 
     const page = await screen.findByTestId('ForbiddenPage');
@@ -18,7 +24,12 @@ describe('app/router/RouterProvider', () => {
     componentRender(<RouterProvider />, {
       route: getRouteProfile(':1'),
       initialState: {
-        user: { _inited: true, authData: {} },
+        user: {
+          _inited: true,
+          authData: {
+            id: '1',
+          },
+        },
       },
     });
 

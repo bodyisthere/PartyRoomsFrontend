@@ -27,8 +27,7 @@ const App = memo(() => {
   return (
     <div id='app'>
       <Suspense fallback=''>
-        {/* <RouterProvider /> */}
-        <ProfilePage />
+        <RouterProvider />
       </Suspense>
     </div>
   );
