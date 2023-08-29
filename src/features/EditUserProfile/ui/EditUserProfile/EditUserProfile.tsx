@@ -7,6 +7,7 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { editUserProfileReducer } from '../../model/slice/editUserProfileSlice';
 import { EditUserProfilePick } from '../EditUserProfilePick/EditUserProfilePick';
+import { EditUserProfileHobby } from '../EditUserProfileHobby/EditUserProfileHobby';
 
 const initialReducers: ReducersList = {
   editUserProfile: editUserProfileReducer,
@@ -17,7 +18,7 @@ export function EditUserProfile() {
 
   const aboutBlock = <EditUserProfileAbout />;
 
-  const hobby = <EditUserProfilePick />;
+  const hobby = <EditUserProfileHobby />;
 
   const want = <EditUserProfilePick />;
 

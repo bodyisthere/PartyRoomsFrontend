@@ -7,9 +7,9 @@ import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { registrationActions } from '../../model/slice/registrationSlice';
-import { getRegistrationUsername } from '../../model/selectors/getRegistrationUsername';
-import { getRegistrationLastName } from '../../model/selectors/getRegistrationLastName';
-import { getRegistrationFirstName } from '../../model/selectors/getRegistrationFirstName';
+import { getRegistrationUsername } from '../../model/selectors/getRegistrationUsername/getRegistrationUsername';
+import { getRegistrationLastName } from '../../model/selectors/getRegistrationLastName/getRegistrationLastName';
+import { getRegistrationFirstName } from '../../model/selectors/getRegistrationFirstName/getRegistrationFirstName';
 import { registrationValidationStepFirst } from '../../lib/validation/registrationValidation';
 import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
 

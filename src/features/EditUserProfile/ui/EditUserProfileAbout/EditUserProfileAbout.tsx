@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useSelector } from 'react-redux';
 import { useCallback, useEffect } from 'react';
-import { getEditUserProfileAbout } from '../../model/selectors/getEditUserProfileAbout';
+import { getEditUserProfileAbout } from '../../model/selectors/getEditUserProfileAbout/getEditUserProfileAbout';
 import { Container } from '@/shared/ui/Container';
 import { VStack, HStack } from '@/shared/ui/Stack';
 import { Block } from '@/shared/ui/Block';

@@ -26,6 +26,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'react/jsx-props-no-spreading': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
+    'no-underscore-dangle': ['error', { allow: ['_inited'] }],
   },
   overrides: [
     {

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { ErrorInfo, ReactNode, Suspense } from 'react';
 
 interface ErrorBoundaryProps {
@@ -30,7 +31,6 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     const { children } = this.props;
 
     if (hasError) {
-      // You can render any custom fallback UI
       return (
         <Suspense fallback=''>
           <h1>error boundary</h1>

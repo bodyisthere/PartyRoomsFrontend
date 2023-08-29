@@ -11,8 +11,8 @@ import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { Input } from '@/shared/ui/Input';
 import { loginValidation } from '../../lib/validation/loginValidation';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getLoginPassword } from '../../model/selectors/getLoginPassword';
-import { getLoginEmail } from '../../model/selectors/getLoginEmail';
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword';
+import { getLoginEmail } from '../../model/selectors/getLoginEmail/getLoginEmail';
 import { Button } from '@/shared/ui/Button';
 import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
 

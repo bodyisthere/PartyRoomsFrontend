@@ -9,15 +9,16 @@ import { TagInfo } from '../../model/types/EditUserProfileSchema';
 
 interface EditUserProfileTagProps {
   className?: string;
-  info?: TagInfo;
+  info: TagInfo;
+  onDelete: (id: string) => void;
 }
 
-export function EditUserProfileTag({ className, info }: EditUserProfileTagProps) {
+export function EditUserProfileTag({ className, info, onDelete }: EditUserProfileTagProps) {
   const { t } = useTranslation();
   return (
     <HStack className={`${styles.tag} ${info?.important && styles.important}`} justify='between'>
       <p>#{info?.content}</p>
-      <Button theme='clear'>
+      <Button theme='clear' onClick={() => onDelete(info.id)}>
         <Icon Svg={Plus} />
       </Button>
     </HStack>

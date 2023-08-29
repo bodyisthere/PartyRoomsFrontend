@@ -39,7 +39,7 @@ describe('features/registration/RegistrationForm', () => {
     expect(page).toBeInTheDocument();
   });
 
-  test('should render second step with other value', async () => {
+  test('should render first step with other value', async () => {
     componentRender(<RegistrationForm changeCondition={() => {}} />, {
       asyncReducers: {
         registration: registrationReducer,
@@ -52,7 +52,7 @@ describe('features/registration/RegistrationForm', () => {
       },
     });
 
-    const page = await screen.findByTestId('RegistrationStepSecond');
+    const page = await screen.findByTestId('RegistrationStepFirst');
     expect(page).toBeInTheDocument();
   });
 

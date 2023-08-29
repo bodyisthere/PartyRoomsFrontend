@@ -1,12 +1,14 @@
+import { TagInfo } from '@/features/EditUserProfile/model/types/EditUserProfileSchema';
+
 export interface User {
   id: string;
   avatar: string;
   firstName: string;
   lastName: string;
   about: string;
-  hobbies: string[];
-  want: string[];
-  dwant: string[];
+  hobbies: TagInfo[];
+  want: TagInfo[];
+  dwant: TagInfo[];
 }
 
 export interface UserSchema {

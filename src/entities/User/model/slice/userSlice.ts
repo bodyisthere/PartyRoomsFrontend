@@ -10,6 +10,12 @@ const initialState: UserSchema = {
     lastName: 'Иванов',
     id: '3',
     about: '321321321321',
+    hobbies: [
+      { id: '1', content: 'рыбалка', important: false },
+      { id: '2', content: 'шахматы', important: false },
+      { id: '3', content: 'чтение', important: false },
+      { id: '4', content: 'музыка', important: false },
+    ],
   },
 };
 
