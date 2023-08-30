@@ -18,11 +18,11 @@ export function EditUserProfileHobby({ className }: EditUserProfileHobbyProps) {
   const tags = useSelector(getEditUserProfileHobby);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (tagsFromProfile) {
-      dispatch(editUserProfileActions.setHobby(tagsFromProfile));
-    }
-  }, [dispatch, tagsFromProfile]);
+  // useEffect(() => {
+  //   if (tagsFromProfile) {
+  //     dispatch(editUserProfileActions.setHobby(tagsFromProfile));
+  //   }
+  // }, [dispatch, tagsFromProfile]);
 
   const onDelete = (id: string) => {
     dispatch(editUserProfileActions.removeHobby(id));
@@ -39,9 +39,6 @@ export function EditUserProfileHobby({ className }: EditUserProfileHobbyProps) {
       dispatch(editUserProfileActions.setHobby([]));
     }
   };
-
-  console.log('tags from profile: ', tagsFromProfile);
-  console.log('tags: ', tags);
 
   const onSave = () => {};
 

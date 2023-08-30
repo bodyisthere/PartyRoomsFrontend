@@ -5,8 +5,8 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { RegistrationStepFirst } from '../RegistrationStep/RegistrationStepFirst';
-import { RegistrationStepSecond } from '../RegistrationStep/RegistrationStepSecond';
+import { RegistrationStepFirst } from '../RegistrationStep/RegistrationStepFirst/RegistrationStepFirst';
+import { RegistrationStepSecond } from '../RegistrationStep/RegistrationStepSecond/RegistrationStepSecond';
 import { getRegistrationStep } from '../../model/selectors/getRegistrationStep/getRegistrationStep';
 
 const initialReducers: ReducersList = {

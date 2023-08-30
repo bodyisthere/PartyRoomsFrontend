@@ -23,19 +23,19 @@ export function UserProfileLayout({ avatar, about, dwant, hobby, want }: UserPro
           <div>{avatar}</div>
           <div>{about}</div>
           <div>
-            <Button className={styles.button} size='size_xl'>
+            <Button className={styles.button} size='xl'>
               {t('Хобби')}
             </Button>
           </div>
           <div>{hobby}</div>
           <div>
-            <Button className={styles.button} size='size_xl'>
+            <Button className={styles.button} size='xl'>
               {t('Хотелки')}
             </Button>
           </div>
           <div>{want}</div>
           <div>
-            <Button className={styles.button} size='size_xl'>
+            <Button className={styles.button} size='xl'>
               {t('Не хотелки')}
             </Button>
           </div>

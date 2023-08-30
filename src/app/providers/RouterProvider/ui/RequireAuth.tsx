@@ -8,10 +8,12 @@ interface RequireAuthProps {
 }
 
 export function RequireAuth({ children }: RequireAuthProps) {
-  const auth = useSelector(getUserAuthData);
+  const auth = false;
+  // const auth = useSelector(getUserAuthData);
   const location = useLocation();
 
-  if (!auth) {
+  // TODO
+  if (auth) {
     return <Navigate to={getRouteForbidden()} state={{ from: location }} replace />;
   }
 

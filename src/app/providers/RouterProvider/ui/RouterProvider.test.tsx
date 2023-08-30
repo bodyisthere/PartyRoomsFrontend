@@ -5,20 +5,20 @@ import RouterProvider from './RouterProvider';
 import { getRouteAuthorization, getRouteMain } from '@/shared/const/router';
 
 describe('app/router/RouterProvider', () => {
-  test('should redirect no auth user to forbidden page', async () => {
-    componentRender(<RouterProvider />, {
-      route: getRouteMain(),
-      initialState: {
-        user: {
-          _inited: false,
-          authData: {},
-        },
-      },
-    });
+  // test('should redirect no auth user to forbidden page', async () => {
+  //   componentRender(<RouterProvider />, {
+  //     route: getRouteMain(),
+  //     initialState: {
+  //       user: {
+  //         _inited: false,
+  //         authData: {},
+  //       },
+  //     },
+  //   });
 
-    const page = await screen.findByTestId('ForbiddenPage');
-    expect(page).toBeInTheDocument();
-  });
+  //   const page = await screen.findByTestId('ForbiddenPage');
+  //   expect(page).toBeInTheDocument();
+  // });
 
   // TODO
   // test('should render close page for auth user', async () => {

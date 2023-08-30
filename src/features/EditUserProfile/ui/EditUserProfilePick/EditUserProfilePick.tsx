@@ -42,6 +42,9 @@ export function EditUserProfilePick({
       content: value,
       important: false,
     };
+    if (value.length === 0) {
+      return '';
+    }
     if (tags?.length === 10) {
       setLimitError(true);
       return setTimeout(() => {
@@ -51,6 +54,16 @@ export function EditUserProfilePick({
     addItem(item);
     return setValue('');
   }, [addItem, tags?.length, value]);
+
+  const tagsBlock = (
+    <div className={styles.tags}>
+      {tags && tags.length ? (
+        tags.map((el) => <EditUserProfileTag onDelete={removeItem} key={el.id} info={el} />)
+      ) : (
+        <Text text={t('Пока ничего нет!')} align='center' bold='bold_900' theme='placeholder' />
+      )}
+    </div>
+  );
 
   return (
     <div className={classNames(styles.EditUserProfilePick, {}, [className])}>
@@ -66,23 +79,23 @@ export function EditUserProfilePick({
         align='center'
         justify='center'
       >
-        <Input value={value} onChange={onChange} theme='dark-pick' className={styles.input} />
+        <Input
+          value={value}
+          size='l'
+          onChange={onChange}
+          theme='dark-pick'
+          className={styles.input}
+        />
         <Button onClick={onAdd} disabled={limitError} className={styles.add} theme='clear'>
           +
         </Button>
       </HStack>
-      <div className={styles.tags}>
-        {tags && tags.length ? (
-          tags.map((el) => <EditUserProfileTag onDelete={removeItem} key={el.id} info={el} />)
-        ) : (
-          <Text text={t('Пока ничего нет!')} align='center' bold='bold_900' theme='placeholder' />
-        )}
-      </div>
+      {tagsBlock}
       <HStack justify='between'>
-        <Button className={styles.button} onClick={onCancel} size='size_l' theme='attention'>
+        <Button className={styles.button} onClick={onCancel} size='l' theme='attention'>
           {t('Отмена')}
         </Button>
-        <Button className={styles.button} onClick={onSave} size='size_l' theme='success'>
+        <Button className={styles.button} onClick={onSave} size='l' theme='success'>
           {t('Сохранить')}
         </Button>
       </HStack>

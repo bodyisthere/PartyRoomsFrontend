@@ -20,9 +20,9 @@ export function EditUserProfile() {
 
   const hobby = <EditUserProfileHobby />;
 
-  const want = <EditUserProfilePick />;
+  // const want = <EditUserProfilePick />;
 
-  const dwant = <EditUserProfilePick />;
+  // const dwant = <EditUserProfilePick />;
 
   return (
     <DynamicModuleLoader reducers={initialReducers}>
@@ -30,10 +30,9 @@ export function EditUserProfile() {
         avatar={avatarBlock}
         about={aboutBlock}
         hobby={hobby}
-        want={want}
-        dwant={dwant}
+        // want={want}
+        // dwant={dwant}
       />
-      ;
     </DynamicModuleLoader>
   );
 }

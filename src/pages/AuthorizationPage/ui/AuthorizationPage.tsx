@@ -6,7 +6,6 @@ import { Container } from '@/shared/ui/Container';
 import { LoginForm } from '@/features/login';
 import { RegistrationForm } from '@/features/registration';
 import styles from './AuthorizationPage.module.scss';
-import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
 
 interface AuthorizationPageProps {
   className?: string;
@@ -36,11 +35,11 @@ function AuthorizationPage({ className }: AuthorizationPageProps) {
   return (
     <div className={styles.AuthorizationPage} data-testid='AuthorizationPage'>
       <Container padding='0px 10px' maxWidth='1440px' maxHeight='100vh'>
-        <VStack align='center' justify='center' style={{ height: '100vh' }}>
+        <VStack className={styles.vstack} align='center' justify='center'>
           <Block
             className={classNames('', {}, [className])}
             height='auto'
-            width='50vw'
+            width='100%'
             data-testid='AuthorizationPage'
           >
             {matchCondition()}

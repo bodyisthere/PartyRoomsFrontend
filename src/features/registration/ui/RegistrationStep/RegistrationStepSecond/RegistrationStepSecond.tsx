@@ -3,19 +3,22 @@ import { useTranslation } from 'react-i18next';
 import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { registrationActions } from '../../model/slice/registrationSlice';
+import styles from '../RegistrationStep.module.scss';
+
+import { registrationActions } from '../../../model/slice/registrationSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '@/shared/ui/Button';
 import { Input } from '@/shared/ui/Input';
-import { getRegistrationUsername } from '../../model/selectors/getRegistrationUsername/getRegistrationUsername';
-import { getRegistrationLastName } from '../../model/selectors/getRegistrationLastName/getRegistrationLastName';
-import { getRegistrationFirstName } from '../../model/selectors/getRegistrationFirstName/getRegistrationFirstName';
-import { getRegistrationConfirmPassword } from '../../model/selectors/getRegistrationConfrimPassword/getRegistrationConfirmPassword';
-import { getRegistrationEmail } from '../../model/selectors/getRegistrationEmail/getRegistrationEmail';
-import { getRegistrationPassword } from '../../model/selectors/getRegistrationPassword/getRegistrationPassword';
-import { getRegistrationPhoneNumber } from '../../model/selectors/getRegistrationPhoneNumber/getRegistrationPhoneNumber';
-import { registrationValidationStepSecond } from '../../lib/validation/registrationValidation';
+import { getRegistrationUsername } from '../../../model/selectors/getRegistrationUsername/getRegistrationUsername';
+import { getRegistrationLastName } from '../../../model/selectors/getRegistrationLastName/getRegistrationLastName';
+import { getRegistrationFirstName } from '../../../model/selectors/getRegistrationFirstName/getRegistrationFirstName';
+import { getRegistrationConfirmPassword } from '../../../model/selectors/getRegistrationConfrimPassword/getRegistrationConfirmPassword';
+import { getRegistrationEmail } from '../../../model/selectors/getRegistrationEmail/getRegistrationEmail';
+import { getRegistrationPassword } from '../../../model/selectors/getRegistrationPassword/getRegistrationPassword';
+import { getRegistrationPhoneNumber } from '../../../model/selectors/getRegistrationPhoneNumber/getRegistrationPhoneNumber';
+import { registrationValidationStepSecond } from '../../../lib/validation/registrationValidation';
 import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
+import { useNavigate } from 'react-router-dom';
 
 export function RegistrationStepSecond() {
   const { t } = useTranslation();
@@ -28,6 +31,7 @@ export function RegistrationStepSecond() {
   const confirmPassword = useSelector(getRegistrationConfirmPassword);
   const email = useSelector(getRegistrationEmail);
   const phoneNumber = useSelector(getRegistrationPhoneNumber);
+  const goTo = useNavigate();
 
   const onChangePassword = useCallback(
     (value: string) => {
@@ -67,6 +71,7 @@ export function RegistrationStepSecond() {
     if (result) {
       setValidationResult(result);
     }
+    goTo('/profile/1');
   }, [confirmPassword, email, password, phoneNumber]);
 
   const goBack = useCallback(() => dispatch(registrationActions.setStep('1')), [dispatch]);
@@ -118,10 +123,10 @@ export function RegistrationStepSecond() {
 
   const buttons = (
     <>
-      <Button onClick={goBack} theme='attention' size='size_xl'>
+      <Button onClick={goBack} className={styles.button} theme='attention' size='xl'>
         {t('Назад')}
       </Button>
-      <Button onClick={submitResult} size='size_xl'>
+      <Button onClick={submitResult} theme='calm' className={styles.button} size='xl'>
         {t('Продолжить')}
       </Button>
     </>

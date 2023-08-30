@@ -2,60 +2,38 @@
 :root {
   --font-family-main: 'Roboto', sans-serif;
 
-  --font-size-s: 12px;
+  --font-size-s: 14px;
 
   --font-size-m: 16px;
 
-  --font-size-l: 24px;
+  --font-size-l: 20px;
 
-  --font-size-xl: 32px;
+  --font-size-xl: 24px;
 
   --z-index-overlay: 10;
   --z-index-modal: 11;
 }
 
-@media (width < 1024px) {
+@media (width < 768px) {
   :root {
-    --font-size-s: 10px;
+    --font-size-s: 12px;
 
     --font-size-m: 14px;
 
-    --font-size-l: 20px;
-
-    --font-size-xl: 28px;
-  }
-}
-
-@media (width < 768px) {
-  :root {
-    --font-size-s: 8px;
-
-    --font-size-m: 13px;
-
     --font-size-l: 18px;
 
-    --font-size-xl: 25px;
+    --font-size-xl: 20px;
   }
 }
 
 @media (width < 425px) {
   :root {
-    --font-size-s: 8px;
+    --font-size-s: 10px;
 
     --font-size-m: 12px;
 
     --font-size-l: 15px;
 
-    --font-size-xl: 22px;
-  }
-}
-
-@media (width < 375px) {
-  :root {
-    --font-size-m: 10px;
-
-    --font-size-l: 12px;
-
-    --font-size-xl: 15px;
+    --font-size-xl: 18px;
   }
 }

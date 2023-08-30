@@ -14,7 +14,7 @@ type HTMLInputProps = Omit<
 
 type InputTheme = 'form-input' | 'dark-pick';
 
-type InputSize = 's' | 'm' | 'l';
+type InputSize = 's' | 'm' | 'l' | 'xl';
 
 interface InputProps extends HTMLInputProps {
   className?: string;
@@ -29,6 +29,7 @@ interface InputProps extends HTMLInputProps {
   isPassword?: boolean;
   size?: InputSize;
   theme?: InputTheme;
+  maxWidth?: boolean;
 }
 
 export function Input({
@@ -40,6 +41,7 @@ export function Input({
   autofocus,
   readonly,
   addonLeft,
+  maxWidth = true,
   addonRight,
   label,
   isPassword,
@@ -79,15 +81,17 @@ export function Input({
     [styles.readonly]: readonly,
     [styles.focused]: isFocused,
     [styles[theme]]: true,
-    [styles.withAddonLeft]: Boolean(addonLeft),
-    [styles.withAddonRight]: Boolean(addonRight),
+    [styles[size]]: true,
+    [styles.addonLeft]: Boolean(addonLeft),
+    [styles.addonRight]: Boolean(addonRight),
     [styles.error]: isError,
+    [styles.maxWidth]: maxWidth,
   };
 
   const input = (
     <div className={classNames(styles.InputWrapper, mods, [className, styles[size]])}>
       {addonLeft && (
-        <HStack align='center' className={styles.addonLeft}>
+        <HStack align='center' className={`${styles.addonLeft} ${styles.addon}`}>
           {addonLeft}
         </HStack>
       )}
@@ -107,7 +111,11 @@ export function Input({
       {isPassword && (
         <Icon clickable onClick={togglePassword} Svg={isPasswordShow ? EyeOpen : EyeClose} />
       )}
-      {addonRight && <div className={styles.addonRight}>{addonRight}</div>}
+      {addonRight && (
+        <HStack className={`${styles.addonLeft} ${styles.addon}`} align='center'>
+          {addonRight}
+        </HStack>
+      )}
     </div>
   );
 

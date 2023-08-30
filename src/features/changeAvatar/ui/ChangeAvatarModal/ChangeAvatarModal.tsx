@@ -32,10 +32,10 @@ export function ChangeAvatarModal({ className, src, onClose }: ChangeAvatarModal
       />
       <Avatar src={src} alt={t('Новый аватар')} className={styles.avatar} />
       <HStack justify='between'>
-        <Button size='size_l' theme='attention' onClick={onClose}>
+        <Button size='l' theme='attention' onClick={onClose}>
           {t('Отмена')}
         </Button>
-        <Button size='size_l' theme='success'>
+        <Button size='l' theme='success'>
           {t('Сохранить')}
         </Button>
       </HStack>

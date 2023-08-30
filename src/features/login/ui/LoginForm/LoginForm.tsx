@@ -87,10 +87,10 @@ export function LoginForm({ changeCondition }: LoginFormProps) {
 
   const buttons = (
     <>
-      <Button onClick={changeCondition} theme='attention' size='size_xl'>
+      <Button onClick={changeCondition} theme='attention' size='xl'>
         {t('Регистрация')}
       </Button>
-      <Button onClick={submitResult} size='size_xl' data-testid='SubmitButton'>
+      <Button onClick={submitResult} size='xl' data-testid='SubmitButton'>
         {t('Подтвердить')}
       </Button>
     </>

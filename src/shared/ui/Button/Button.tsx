@@ -1,32 +1,33 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import styles from './Button.module.scss';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-export type ButtonTheme = 'clear' | 'default' | 'attention' | 'success';
+export type ButtonTheme = 'clear' | 'calm' | 'success' | 'attention';
 
-export type ButtonSize = 'size_m' | 'size_l' | 'size_xl';
+export type ButtonSize = 's' | 'm' | 'l' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
+  disabled?: boolean;
   theme?: ButtonTheme;
   size?: ButtonSize;
-  disabled?: boolean;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
-export function Button({
+export const Button = ({
   className,
-  children,
   disabled,
-  size = 'size_m',
-  theme = 'default',
+  theme = 'clear',
+  size = 'm',
+  children,
   ...otherProps
-}: ButtonProps) {
+}: ButtonProps) => {
   const mods: Mods = {
     [styles[theme]]: true,
     [styles[size]]: true,
     [styles.disabled]: disabled,
   };
+
   return (
     <button
       type='button'
@@ -37,4 +38,4 @@ export function Button({
       {children}
     </button>
   );
-}
+};

@@ -57,7 +57,7 @@ export function ConnectRoom({ className }: ConnectRoomProps) {
           <Text bold='bold_900' title='Вас пригласили в&nbsp;' size='size_xl' />
           <Text theme='placeholder' text={data.title} size='size_xl' />
         </HStack>
-        <Button className={styles.button} size='size_xl'>
+        <Button className={styles.button} size='xl'>
           {t('Присоединиться')}
         </Button>
         <Text className={styles.already} bold='bold_900' text={t('уже тут')} size='size_xl' />

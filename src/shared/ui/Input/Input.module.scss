@@ -2,78 +2,89 @@
   width: 100%;
   display: flex;
 
-  .addonLeft {
-    color: var(--color-placeholder);
-    padding-right: 1px;
-  }
-
-  .addonRight {
-    color: var(--color-placeholder);
-    padding-left: 1px;
-  }
-
-  .input {
-    padding: 3px;
-    width: 100%;
-  }
-}
-
-.InputWrapper.form-input.error {
-  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  border-bottom: 1px solid var(--color-attention);
-
-  input {
-    color: var(--color-attention);
-
-    &::placeholder {
-      color: var(--color-attention);
+  &.maxWidth {
+    input {
+      width: 100%;
     }
   }
 }
 
-.InputWrapper.form-input {
-  border-bottom: 1px solid var(--color-placeholder);
+// INPUT IN AUTHORIZATION FORM
 
-  .input {
-    font-size: var(--font-size-l);
-    color: var(--color-black);
+.InputWrapper {
+  &.form-input {
+    border-bottom: 1px solid var(--color-placeholder);
+
+    .addon {
+      max-width: 30px;
+      max-height: 30px;
+    }
+
+    .addonLeft {
+      color: var(--color-placeholder);
+      padding-right: 1px;
+    }
+
+    .addonRight {
+      color: var(--color-placeholder);
+      padding-left: 1px;
+    }
+
+    .input {
+      color: var(--color-black);
+    }
+
+    &.focused {
+      border-bottom: 1px solid var(--color-calm);
+    }
+
+    &.readonly.focused {
+      border-bottom: 1px solid var(--color-placeholder);
+    }
+
+    &.error {
+      animation: var(--animation-shake);
+      border-bottom: 1px solid var(--color-attention);
+
+      input {
+        color: var(--color-attention);
+
+        &::placeholder {
+          color: var(--color-attention);
+        }
+      }
+    }
   }
 }
 
+// INPUT IN USER PROFILE
 .InputWrapper.dark-pick {
   .input {
     background: var(--color-title);
-    font-size: var(--font-size-l);
     color: var(--color-primary);
-    padding: 7px;
     font-weight: 900;
     border-radius: 15px;
   }
 }
 
+// OTHER CONDITIONS
+
 .readonly {
   cursor: default;
 }
 
-@keyframes shake {
-  10%,
-  90% {
-    transform: translate3d(-0.5px, 0, 0);
-  }
+.s {
+  font-size: var(--font-size-s);
+}
 
-  20%,
-  80% {
-    transform: translate3d(1px, 0, 0);
-  }
+.m {
+  font-size: var(--font-size-m);
+}
 
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-2px, 0, 0);
-  }
+.l {
+  font-size: var(--font-size-l);
+}
 
-  40%,
-  60% {
-    transform: translate3d(3px, 0, 0);
-  }
+.xl {
+  font-size: var(--font-size-xl);
 }

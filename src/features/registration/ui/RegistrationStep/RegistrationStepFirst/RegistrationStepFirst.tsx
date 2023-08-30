@@ -3,14 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useCallback, useState } from 'react';
 
+import styles from '../RegistrationStep.module.scss';
+
 import { Input } from '@/shared/ui/Input';
 import { Button } from '@/shared/ui/Button';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { registrationActions } from '../../model/slice/registrationSlice';
-import { getRegistrationUsername } from '../../model/selectors/getRegistrationUsername/getRegistrationUsername';
-import { getRegistrationLastName } from '../../model/selectors/getRegistrationLastName/getRegistrationLastName';
-import { getRegistrationFirstName } from '../../model/selectors/getRegistrationFirstName/getRegistrationFirstName';
-import { registrationValidationStepFirst } from '../../lib/validation/registrationValidation';
+import { registrationActions } from '../../../model/slice/registrationSlice';
+import { getRegistrationUsername } from '../../../model/selectors/getRegistrationUsername/getRegistrationUsername';
+import { getRegistrationLastName } from '../../../model/selectors/getRegistrationLastName/getRegistrationLastName';
+import { getRegistrationFirstName } from '../../../model/selectors/getRegistrationFirstName/getRegistrationFirstName';
+import { registrationValidationStepFirst } from '../../../lib/validation/registrationValidation';
 import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
 
 interface RegistrationStepFirstProps {
@@ -75,6 +77,7 @@ export function RegistrationStepFirst({ changeCondition }: RegistrationStepFirst
         onChange={onChangeFirstName}
         isError={!!validationResult.firstName}
         data-testid='firstNameInput'
+        autofocus
       />
       <Input
         label={t('Фамилия')}
@@ -98,10 +101,16 @@ export function RegistrationStepFirst({ changeCondition }: RegistrationStepFirst
 
   const buttons = (
     <>
-      <Button theme='attention' size='size_xl' onClick={changeCondition}>
+      <Button className={styles.button} theme='attention' size='xl' onClick={changeCondition}>
         {t('Войти')}
       </Button>
-      <Button onClick={submitResult} size='size_xl' data-testid='ContinueButton'>
+      <Button
+        className={styles.button}
+        onClick={submitResult}
+        size='xl'
+        data-testid='ContinueButton'
+        theme='calm'
+      >
         {t('Продолжить')}
       </Button>
     </>

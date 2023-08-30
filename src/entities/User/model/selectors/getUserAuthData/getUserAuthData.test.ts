@@ -43,6 +43,6 @@ describe('getUserAuthData', () => {
 
   test('should work with empty state', () => {
     const state: DeepPartial<StateSchema> = {};
-    expect(getUserAuthData(state as StateSchema)).toEqual('');
+    expect(getUserAuthData(state as StateSchema)).toEqual(undefined);
   });
 });
