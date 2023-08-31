@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Text } from '@/shared/ui/Text';
 import { classNames } from '@/shared/lib/classNames/classNames';
 
@@ -34,6 +34,17 @@ export function EditUserProfilePick({
 
   const onChange = useCallback((val: string) => {
     setValue(val);
+  }, []);
+
+  const req = async () => {
+    fetch('https://localhost:7000/api/Profile')
+      .then((json) => json.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    req();
   }, []);
 
   const onAdd = useCallback(() => {
