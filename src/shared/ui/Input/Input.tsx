@@ -88,6 +88,13 @@ export function Input({
     [styles.maxWidth]: maxWidth,
   };
 
+  const matchType = () => {
+    if (isPassword) {
+      return isPasswordShow ? 'text' : 'password';
+    }
+    return type;
+  };
+
   const input = (
     <div className={classNames(styles.InputWrapper, mods, [className, styles[size]])}>
       {addonLeft && (
@@ -96,8 +103,7 @@ export function Input({
         </HStack>
       )}
       <input
-        ref={ref}
-        type={isPassword ? (isPasswordShow ? 'text' : 'password') : type}
+        type={matchType()}
         value={value || ''}
         onChange={onChangeHandler}
         className={styles.input}
@@ -107,7 +113,6 @@ export function Input({
         placeholder={placeholder}
         {...otherProps}
       />
-      {}
       {isPassword && (
         <Icon clickable onClick={togglePassword} Svg={isPasswordShow ? EyeOpen : EyeClose} />
       )}

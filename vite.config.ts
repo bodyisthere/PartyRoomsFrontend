@@ -28,7 +28,7 @@ export default defineConfig({
   },
   define: {
     __IS_DEV__: JSON.stringify(true),
-    __API__: JSON.stringify('https://dummyjson.com'),
+    __API__: JSON.stringify('https://localhost:7000/api'),
     __PROJECT__: JSON.stringify('frontend'),
   },
 });

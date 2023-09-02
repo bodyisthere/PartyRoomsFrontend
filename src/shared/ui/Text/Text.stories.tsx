@@ -8,4 +8,11 @@ export default {
 
 const Template: StoryFn<typeof Text> = (args) => <Text {...args} />;
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  title: 'title',
+};
+
+export const SmallText = Template.bind({});
+SmallText.args = {
+  text: 'title',
+};

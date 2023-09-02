@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { useNavigate } from 'react-router-dom';
 import styles from '../RegistrationStep.module.scss';
 
 import { registrationActions } from '../../../model/slice/registrationSlice';
@@ -12,13 +13,15 @@ import { Input } from '@/shared/ui/Input';
 import { getRegistrationUsername } from '../../../model/selectors/getRegistrationUsername/getRegistrationUsername';
 import { getRegistrationLastName } from '../../../model/selectors/getRegistrationLastName/getRegistrationLastName';
 import { getRegistrationFirstName } from '../../../model/selectors/getRegistrationFirstName/getRegistrationFirstName';
-import { getRegistrationConfirmPassword } from '../../../model/selectors/getRegistrationConfrimPassword/getRegistrationConfirmPassword';
+import { getRegistrationConfirmPassword } from '../../../model/selectors/getRegistrationConfirmPassword/getRegistrationConfirmPassword';
 import { getRegistrationEmail } from '../../../model/selectors/getRegistrationEmail/getRegistrationEmail';
 import { getRegistrationPassword } from '../../../model/selectors/getRegistrationPassword/getRegistrationPassword';
 import { getRegistrationPhoneNumber } from '../../../model/selectors/getRegistrationPhoneNumber/getRegistrationPhoneNumber';
 import { registrationValidationStepSecond } from '../../../lib/validation/registrationValidation';
 import { AuthorizationLayout } from '@/shared/layouts/AuthorizationLayout';
-import { useNavigate } from 'react-router-dom';
+import { useRegistration } from '@/features/registration/api/registrationApi';
+import { matchValidationResult } from '@/features/registration/lib/matchValidationResult/matchValidationResult';
+import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage';
 
 export function RegistrationStepSecond() {
   const { t } = useTranslation();
@@ -31,6 +34,7 @@ export function RegistrationStepSecond() {
   const confirmPassword = useSelector(getRegistrationConfirmPassword);
   const email = useSelector(getRegistrationEmail);
   const phoneNumber = useSelector(getRegistrationPhoneNumber);
+  const [registrationSubmit, { data, isLoading, isError, error }] = useRegistration();
   const goTo = useNavigate();
 
   const onChangePassword = useCallback(
@@ -70,19 +74,37 @@ export function RegistrationStepSecond() {
     const result = registrationValidationStepSecond(body);
     if (result) {
       setValidationResult(result);
+    } else {
+      registrationSubmit({
+        email,
+        firstName,
+        lastName,
+        phoneNumber,
+        password,
+        username,
+      });
     }
-    goTo('/profile/1');
-  }, [confirmPassword, email, password, phoneNumber]);
+  }, [
+    confirmPassword,
+    email,
+    password,
+    phoneNumber,
+    firstName,
+    lastName,
+    registrationSubmit,
+    username,
+  ]);
+
+  console.log(data);
+
+  useEffect(() => {
+    if (data) {
+      window.localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(data));
+      goTo('/profile/1');
+    }
+  }, [data, goTo]);
 
   const goBack = useCallback(() => dispatch(registrationActions.setStep('1')), [dispatch]);
-
-  const matchValidationResult = () => {
-    if (validationResult.email) return validationResult.email;
-    if (validationResult.phoneNumber) return validationResult.phoneNumber;
-    if (validationResult.password) return validationResult.password;
-    if (validationResult.confirmPassword) return validationResult.confirmPassword;
-    return '';
-  };
 
   const form = (
     <>
@@ -126,8 +148,14 @@ export function RegistrationStepSecond() {
       <Button onClick={goBack} className={styles.button} theme='attention' size='xl'>
         {t('Назад')}
       </Button>
-      <Button onClick={submitResult} theme='calm' className={styles.button} size='xl'>
-        {t('Продолжить')}
+      <Button
+        onClick={submitResult}
+        disabled={isLoading || false}
+        theme='calm'
+        className={styles.button}
+        size='xl'
+      >
+        {isLoading ? t('Загрузка...') : t('Продолжить')}
       </Button>
     </>
   );
@@ -138,7 +166,7 @@ export function RegistrationStepSecond() {
         buttons={buttons}
         form={form}
         title={t('Давайте знакомиться!')}
-        titleError={matchValidationResult()}
+        titleError={matchValidationResult(validationResult)}
       />
     </div>
   );

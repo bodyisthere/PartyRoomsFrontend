@@ -28,9 +28,18 @@ export const registrationValidationStepFirstYupSchema = object({
 export const registrationValidationStepSecondYupSchema = object({
   email: string().required('Почта обязательное поле').email('Введите корректный email'),
   // TODO should add phone number validation and mask
-  phoneNumber: string().required('Номер телефона обязательное поле'),
+  phoneNumber: string()
+    .min(11, 'Некорректный номер')
+    .max(12, 'Некорректный номер')
+    .matches(/(^8|7|\+7)((\d{10})|(\s\(\d{3}\)\s\d{3}\s\d{2}\s\d{2}))/, 'Некорректный номер')
+    .required('Номер телефона обязательное поле'),
   password: string()
     .required('Пароль обязательное поле')
+    .matches(
+      // eslint-disable-next-line no-useless-escape
+      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+      'Пароль должен содержать, как минимум 1 цифру, 1 маленькую букву, 1 большую и символы'
+    )
     .min(5, 'Минимальная длина пароля 5 символов'),
   confirmPassword: string()
     .required('Повторите пароль')

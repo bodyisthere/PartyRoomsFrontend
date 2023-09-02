@@ -1,15 +1,18 @@
+const reduxSliceLocation = '**/src/**/**/**/slice/*.ts';
+const storiesLocation = '**/src/**/*.stories.{ts,tsx}';
+
 module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    "airbnb",
-    "airbnb/hooks",
-    "airbnb-typescript",
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
-    "plugin:storybook/recommended"
+    'airbnb',
+    'airbnb/hooks',
+    'airbnb-typescript',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
+    'plugin:storybook/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'scripts'],
   parser: '@typescript-eslint/parser',
@@ -31,9 +34,16 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['**/src/**/**/**/slice/*.ts'],
+      files: reduxSliceLocation,
       rules: {
         'no-param-reassign': 'off',
+      },
+    },
+    {
+      files: storiesLocation,
+      rules: {
+        'import/no-extraneous-dependencies': 'off',
+        'react/function-component-definition': 'off',
       },
     },
   ],
