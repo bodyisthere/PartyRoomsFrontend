@@ -44,5 +44,6 @@ export function UserProfile({ className }: UserProfileProps) {
         return <ViewUserProfile />;
     }
   };
+
   return <DynamicModuleLoader reducers={initialReducers}>{matchCondition()}</DynamicModuleLoader>;
 }

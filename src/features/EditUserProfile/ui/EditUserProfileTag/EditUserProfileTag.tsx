@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import Plus from '@/shared/assets/icons/Plus.svg';
-import styles from './EditUserProfile.module.scss';
+import styles from './EditUserProfileTag.module.scss';
 import { HStack } from '@/shared/ui/Stack';
 import { Button } from '@/shared/ui/Button';
 import { Icon } from '@/shared/ui/Icon';
@@ -18,7 +18,7 @@ export function EditUserProfileTag({ className, info, onDelete }: EditUserProfil
   return (
     <HStack className={`${styles.tag} ${info?.important && styles.important}`} justify='between'>
       <p>#{info?.content}</p>
-      <Button theme='clear' onClick={() => onDelete(info.id)}>
+      <Button theme='clear' className={styles.button} onClick={() => onDelete(info.id)}>
         <Icon Svg={Plus} />
       </Button>
     </HStack>

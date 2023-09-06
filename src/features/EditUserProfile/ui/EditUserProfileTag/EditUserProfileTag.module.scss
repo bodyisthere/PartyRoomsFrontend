@@ -1,0 +1,35 @@
+.tag {
+  color: var(--color-primary);
+  background: var(--color-title);
+  font-size: var(--font-size-m);
+  border-radius: 15px;
+  margin: 0 5px 5px 0;
+  padding: 5px 10px;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.important {
+  color: var(--color-attention);
+}
+
+@media (max-width: 477px) {
+  .tag {
+    max-width: 300px;
+    position: relative;
+
+    p {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 250px;
+      overflow: hidden;
+    }
+  }
+}

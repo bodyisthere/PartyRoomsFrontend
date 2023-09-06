@@ -5,6 +5,7 @@ import { Container } from '@/shared/ui/Container';
 import { HStack, VStack } from '@/shared/ui/Stack';
 import { Block } from '@/shared/ui/Block';
 import { Button } from '@/shared/ui/Button';
+import { Text } from '@/shared/ui/Text';
 
 interface UserProfileLayoutProps {
   avatar?: ReactNode;
@@ -17,31 +18,43 @@ interface UserProfileLayoutProps {
 export function UserProfileLayout({ avatar, about, dwant, hobby, want }: UserProfileLayoutProps) {
   const { t } = useTranslation();
   return (
-    <Container padding='10px 10px' maxWidth='1440px' testid='UserProfileLayout'>
-      <VStack align='center' justify='center'>
-        <Block className={styles.block} width='auto' height='auto'>
-          <div>{avatar}</div>
-          <div>{about}</div>
-          <div>
-            <Button className={styles.button} size='xl'>
-              {t('Хобби')}
-            </Button>
-          </div>
-          <div>{hobby}</div>
-          <div>
-            <Button className={styles.button} size='xl'>
-              {t('Хотелки')}
-            </Button>
-          </div>
-          <div>{want}</div>
-          <div>
-            <Button className={styles.button} size='xl'>
-              {t('Не хотелки')}
-            </Button>
-          </div>
-          <div>{dwant}</div>
-        </Block>
-      </VStack>
+    <Container maxWidth='1440px' className={styles.container} testid='UserProfileLayout'>
+      <Block className={styles.block} width='auto' height='auto'>
+        <div className={styles.avatarBlock}>
+          {avatar}
+          {about}
+        </div>
+        <div className={styles.item}>
+          <Text
+            text={t('Хобби')}
+            bold='bold_900'
+            align='center'
+            size='size_xl'
+            className={styles.text}
+          />
+          {hobby}
+        </div>
+        <div className={styles.item}>
+          <Text
+            text={t('Хотелки')}
+            bold='bold_900'
+            align='center'
+            size='size_xl'
+            className={styles.text}
+          />
+          {want}
+        </div>
+        <div className={styles.item}>
+          <Text
+            text={t('Не хотелки')}
+            bold='bold_900'
+            align='center'
+            size='size_xl'
+            className={styles.text}
+          />
+          {dwant}
+        </div>
+      </Block>
     </Container>
   );
 }

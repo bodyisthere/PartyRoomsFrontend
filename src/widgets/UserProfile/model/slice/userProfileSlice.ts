@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { UserProfileCondition, UserProfileSchema } from '../types/UserProfileSchema';
 
 const initialState: UserProfileSchema = {
-  condition: 'edit',
+  condition: 'view',
 };
 
 export const userProfileSlice = createSlice({

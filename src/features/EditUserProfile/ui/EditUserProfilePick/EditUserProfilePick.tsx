@@ -36,19 +36,6 @@ export function EditUserProfilePick({
     setValue(val);
   }, []);
 
-  const req = async () => {
-    fetch('https://localhost:7000/api/Profile')
-      .then((json) => json.json())
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
-  };
-
-  //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJSb2xlIjoiVXNlciIsIlVzZXJuYW1lIjoiMzIxMzIxIiwiSWQiOiIyZWQ4NDBmOC1lZGY5LTRhMWEtZDMzMS0wOGRiYTlmZmVjMzUiLCJFbWFpbCI6InVzamlvM2ppa21tIXNTMzIxMzIxZXJAZXhhbXBsZS5jb20iLCJuYmYiOjE2OTM0NzIwODUsImV4cCI6MTY5MzQ3MjE0NSwiaXNzIjoiTXlBcGlUb2tlbiIsImF1ZCI6Ik15Q2xpZW50In0.WvIMlYwpxzWGdyptC91ueJKC-nbKjiWpFRxaouhV7yY
-
-  useEffect(() => {
-    req();
-  }, []);
-
   const onAdd = useCallback(() => {
     const item: TagInfo = {
       id: `${Math.random()}`,
@@ -68,15 +55,22 @@ export function EditUserProfilePick({
     return setValue('');
   }, [addItem, tags?.length, value]);
 
-  const tagsBlock = (
-    <div className={styles.tags}>
-      {tags && tags.length ? (
-        tags.map((el) => <EditUserProfileTag onDelete={removeItem} key={el.id} info={el} />)
-      ) : (
-        <Text text={t('Пока ничего нет!')} align='center' bold='bold_900' theme='placeholder' />
-      )}
-    </div>
-  );
+  const tagsBlock =
+    tags && tags.length ? (
+      <div className={styles.tags}>
+        {tags.map((el) => (
+          <EditUserProfileTag onDelete={removeItem} key={el.id} info={el} />
+        ))}
+      </div>
+    ) : (
+      <Text
+        className={styles.nothing}
+        text={t('Пока ничего нет!')}
+        align='center'
+        bold='bold_900'
+        theme='placeholder'
+      />
+    );
 
   return (
     <div className={classNames(styles.EditUserProfilePick, {}, [className])}>
@@ -98,6 +92,7 @@ export function EditUserProfilePick({
           onChange={onChange}
           theme='dark-pick'
           className={styles.input}
+          maxLength={40}
         />
         <Button onClick={onAdd} disabled={limitError} className={styles.add} theme='clear'>
           +

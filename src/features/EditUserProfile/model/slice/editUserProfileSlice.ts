@@ -15,11 +15,25 @@ export const editUserProfileSlice = createSlice({
     setAbout: (state, { payload }: PayloadAction<string>) => {
       state.about = payload;
     },
-    setWant: (state, { payload }: PayloadAction<TagInfo>) => {
-      state.want.push(payload);
+    setWant: (state, { payload }: PayloadAction<TagInfo | TagInfo[]>) => {
+      if (Array.isArray(payload)) {
+        state.want = payload;
+      } else {
+        state.want.push(payload);
+      }
     },
-    setDWant: (state, { payload }: PayloadAction<TagInfo>) => {
-      state.dwant.push(payload);
+    removeWant: (state, { payload }: PayloadAction<string>) => {
+      state.want = state.want.filter((el) => el.id !== payload);
+    },
+    setDWant: (state, { payload }: PayloadAction<TagInfo | TagInfo[]>) => {
+      if (Array.isArray(payload)) {
+        state.dwant = payload;
+      } else {
+        state.dwant.push(payload);
+      }
+    },
+    removeDwant: (state, { payload }: PayloadAction<string>) => {
+      state.dwant = state.dwant.filter((el) => el.id !== payload);
     },
     setHobby: (state, { payload }: PayloadAction<TagInfo | TagInfo[]>) => {
       if (Array.isArray(payload)) {
